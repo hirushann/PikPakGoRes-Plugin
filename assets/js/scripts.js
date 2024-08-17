@@ -292,6 +292,28 @@ function roomocc(e,val,bec){
 	
 }
 
+function displayRooms() {
+	
+	var hotelSearchRadioBox = document.getElementById("hotelSearchRadioBox");
+	var vacationSearchRadioBox = document.getElementById("vacationSearchRadioBox");
+	
+	if (hotelSearchRadioBox.checked == true){
+		jQuery("#room_display_unit").show();
+		jQuery("#hType_h_main").hide();
+		jQuery("#hotel_type_H").hide();
+		jQuery("#hotel-vacation_name_H_id").html("Hotel Name");
+		jQuery("#vacation-home-label-id").html("Hotel Availability");
+		
+	} else if (vacationSearchRadioBox.checked == true){
+		jQuery("#norooms_H").val("1").change();
+		jQuery("#room_display_unit").hide();
+		jQuery("#hType_h_main").show();
+		jQuery("#hotel_type_H").show();
+		jQuery("#hotel-vacation_name_H_id").html("Vacation Home Name");
+		jQuery("#vacation-home-label-id").html("Vacation Home Availability");
+	} 
+  }
+
 function roomoccstring(e,val,bec){
 	var occstring = '';
 	for(i=0;i<val;i++){
@@ -653,7 +675,10 @@ function LoadData_H(){
 		jQuery('#availableHotels').val((availableHotels_H.checked?'on':'off'));
 		jQuery('#onRequestHotels').val((onRequestHotels_H.checked?'on':'off'));
 		jQuery('#discountCouponNo').val(discountCoupon_No_H.value);
+		jQuery('#multiLangCityName').val(jQuery('#cityName').val());
+		var selectedOption = document.querySelector("input[type='radio'][name=hotelSearchType]:checked").value;
 
+		jQuery('#hotelSearchType').val(selectedOption);
 		if(hid_H_Loc.value.split('|')[1]!=H_Loc.value){
 			jQuery('#hid_H_Loc').val('');
 			return validate('formH');
@@ -1323,9 +1348,9 @@ function changeCss(bc){
 	var css = "";
 
 	if("WEB"==bc){
-		css = '../css/style.css';
+		css = 'css/style.css';
 	}else if("CC"==bc){
-		css = '../css/style_CC.css';
+		css = 'css/style_CC.css';
 	}
 	Sid.css([css],'','head');
 	setTimeout('hideMask()',200);
@@ -1711,11 +1736,11 @@ function getMonthName(m){
 
 var currentModule = 'ALL';
 function becConfigLoad(){
-	var becConfig = $.cookie("becConfig");
+	var becConfig = jQuery.cookie("becConfig");
 	if(becConfig != null && becConfig !='' && becConfig != undefined) {
-		loadConfig(JSON.parse($.cookie("becConfig")));
+		loadConfig(JSON.parse(jQuery.cookie("becConfig")));
 	}else{
-	      $.ajax({
+	      jQuery.ajax({
 	      url: subURL+"ComponentSupport.do?method=getBookingEngineFiltersAndCustomization",
 	      dataType: "text",
 	      cache: true,
@@ -1763,15 +1788,15 @@ function becFilterLoad(curMod){
 
 function loadPrefCurViaEar(){
 	jQuery(document).ready(function(){	
-		var becPrefCurCookie = $.cookie("becPrefCur")
+		var becPrefCurCookie = jQuery.cookie("becPrefCur")
 		if(becPrefCurCookie != null && becPrefCurCookie !='' && becPrefCurCookie != undefined) {
-			loadPrefCur(JSON.parse($.cookie("becPrefCur")));
+			loadPrefCur(JSON.parse(jQuery.cookie("becPrefCur")));
 		}else{			
-			$.ajax({
+			jQuery.ajax({
 	               url: subURL+"ComponentSupport.do?method=getBookingEngineFiltersAndCustomization",
 	               dataType: "script",
 	               xhr: function () {
-	                   if ($.browser.msie && $.browser.msie){
+	                   if (jQuery.browser.msie && jQuery.browser.msie){
 	                       return new ActiveXObject("Microsoft.XMLHTTP");
 	                   } else {
 	                       return new XMLHttpRequest();
@@ -2305,11 +2330,11 @@ function  validatePriceFilter(){
 validatePriceFilter();
 
 function getDateFormat(date){
-	return $.datepicker.formatDate('dd M yy', new Date(date));
+	return jQuery.datepicker.formatDate('dd M yy', new Date(date));
 }
 
 function getOriginalDateFormat(date){
 	var r  = new Date(date);
-	return $.datepicker.formatDate('mm/dd/yy', new Date(date));
+	return jQuery.datepicker.formatDate('mm/dd/yy', new Date(date));
 	
 }

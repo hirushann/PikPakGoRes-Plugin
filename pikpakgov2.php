@@ -8,9 +8,29 @@ Author: Hirushan Perera
 License: GPL2
 */
 
+function enqueue_reservation_system_assets() {
+  wp_enqueue_script( 'jquery' );
+  // Enqueue CSS files
+  wp_enqueue_style('jquery-ui-css', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css');
+  wp_enqueue_style('jquery-autocomplete-css', 'https://cdn.jsdelivr.net/npm/jquery-autocomplete@1.2.8/jquery.autocomplete.min.css');
+  // wp_enqueue_style('jquery-datepicker-css', 'https://cdn.jsdelivr.net/npm/jquery-datepicker@1.12.3/jquery-datepicker.min.js');
+  wp_enqueue_style('main-style', plugin_dir_url(__FILE__) . 'assets/css/style.css');
+
+  // Enqueue JS files
+  wp_enqueue_script('jquery');
+  wp_enqueue_script('jquery-datepicker', 'https://cdn.jsdelivr.net/npm/jquery-datepicker@1.12.3/jquery-datepicker.min.js', array('jquery'), '1.12.3', true);
+  wp_enqueue_script('jquery-easing', 'https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js', array('jquery'), '1.4.1', true);
+  wp_enqueue_script('jquery-autcomplete-js', 'https://cdn.jsdelivr.net/npm/jquery-autocomplete@1.2.8/jquery.autocomplete.min.js', array('jquery'), '1.2.8', true);
+  wp_enqueue_script('autocomplete-script', plugin_dir_url(__FILE__) . 'assets/js/autocomplete.js', array('jquery'), '1.1.0', true);
+  wp_enqueue_script('scripts-js', plugin_dir_url(__FILE__) . 'assets/js/scripts.js?v=1', array('jquery'), null, true);
+}
+add_action('wp_enqueue_scripts', 'enqueue_reservation_system_assets');
+
 // Shortcode function to output the reservation system form
 function reservation_system_shortcode()
-{ ?>
+{ 
+  ob_start();
+  ?>
   <link href="<?php echo plugin_dir_url(__FILE__); ?>/assets/css/ui-lightness/jquery-ui-1.8.10.custom.css" rel="stylesheet" type="text/css" />
   <link href="<?php echo plugin_dir_url(__FILE__); ?>/assets/css/style.css" type="text/css" rel="stylesheet" media="screen" />
   <link type="text/css" href="<?php echo plugin_dir_url(__FILE__); ?>/assets/css/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
@@ -457,12 +477,14 @@ function reservation_system_shortcode()
   <script src="<?php echo plugin_dir_url(__FILE__); ?>/assets/js/prefixfree.min.js"></script>
   
   <script>
-    $(document).ready(function() {
-      if ($(window).width() < 610) {
-        $(".mobile-hide-menu").on('click', function() {
-          $("#ribbon").hide(1000);
-        });
-      }
+    jQuery(document).ready(function($) {
+      $(document).ready(function() {
+        if ($(window).width() < 610) {
+          $(".mobile-hide-menu").on('click', function() {
+            $("#ribbon").hide(1000);
+          });
+        }
+      });
     });
   </script>
   <script type="text/javascript">
@@ -590,24 +612,8 @@ function reservation_system_shortcode()
     }
   </style>
 <?php
+return ob_get_clean();
 }
 add_shortcode('reservation_system', 'reservation_system_shortcode');
 
 
-function enqueue_reservation_system_assets() {
-  wp_enqueue_script( 'jquery' );
-  // Enqueue CSS files
-  wp_enqueue_style('jquery-ui-css', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css');
-  wp_enqueue_style('jquery-autocomplete-css', 'https://cdn.jsdelivr.net/npm/jquery-autocomplete@1.2.8/jquery.autocomplete.min.css');
-  // wp_enqueue_style('jquery-datepicker-css', 'https://cdn.jsdelivr.net/npm/jquery-datepicker@1.12.3/jquery-datepicker.min.js');
-  wp_enqueue_style('main-style', plugin_dir_url(__FILE__) . 'assets/css/style.css');
-
-  // Enqueue JS files
-  wp_enqueue_script('jquery');
-  wp_enqueue_script('jquery-datepicker', 'https://cdn.jsdelivr.net/npm/jquery-datepicker@1.12.3/jquery-datepicker.min.js', array('jquery'), '1.12.3', true);
-  wp_enqueue_script('jquery-easing', 'https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js', array('jquery'), '1.4.1', true);
-  wp_enqueue_script('jquery-autcomplete-js', 'https://cdn.jsdelivr.net/npm/jquery-autocomplete@1.2.8/jquery.autocomplete.min.js', array('jquery'), '1.2.8', true);
-  wp_enqueue_script('autocomplete-script', plugin_dir_url(__FILE__) . 'assets/js/autocomplete.js', array('jquery'), '1.1.0', true);
-  wp_enqueue_script('scripts-js', plugin_dir_url(__FILE__) . 'assets/js/scripts.js?v=1', array('jquery'), null, true);
-}
-add_action('wp_enqueue_scripts', 'enqueue_reservation_system_assets');

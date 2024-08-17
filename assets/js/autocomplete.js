@@ -1,7 +1,7 @@
 /**
- * Used to resolve confilicting jQuery handler with other libraries.
+ * Used to resolve confilicting $ handler with other libraries.
  */
-jQuery.noConflict();
+//jQuery.noConflict();
 
 //var locationDataURL = "http://demo.secure-reservation.com/rezbase_v3Reservations/ComponentSupport.do?method=locationData";
 
@@ -14,8 +14,8 @@ var serviePortal ="rezbase_v3";
 var servicePath ="admin/common/LocationData";*/
 
 /*function createServiceUrl(){
-	serviceHost = jQuery('#serviceHost').val();
-	serviePortal = jQuery('#serviePortal').val();
+	serviceHost = $('#serviceHost').val();
+	serviePortal = $('#serviePortal').val();
 	 
 	locationDataURL = "http://"+ serviceHost+ "/" +  serviePortal+ "/" + servicePath
 	//console.log("serviceHost:" +serviceHost+ ":"  )
@@ -271,7 +271,7 @@ function createLabel(item, type){
 
 function loadCacheData(term, response){
 	try{
-		var key = term + '@'+ jQuery('#partnerType').val() + '@'+ jQuery('#partnerId').val();
+		var key = term + '@'+ $('#partnerType').val() + '@'+ $('#partnerId').val();
 		if (key in cache) {
 			response(cache[key]);
 	        return;
@@ -281,7 +281,7 @@ function loadCacheData(term, response){
 
 function addCacheData(term, returnData){
 	try{
-	var key = term + '@'+ jQuery('#partnerType').val() + '@'+ jQuery('#partnerId').val();
+	var key = term + '@'+ $('#partnerType').val() + '@'+ $('#partnerId').val();
 		if(jQuery(returnData).size() > 0){		
 			cache[key] = returnData;
 		}
@@ -290,8 +290,8 @@ function addCacheData(term, returnData){
 
 /* Autocomplete widgets */
 jQuery(function() {
-	 /*serviceHost = jQuery('#serviceHost').val();
-	 serviePortal = jQuery('#serviePortal').val();*/
+	 /*serviceHost = $('#serviceHost').val();
+	 serviePortal = $('#serviePortal').val();*/
 	 //createServiceUrl();
 	 
     var cache = {};
@@ -307,10 +307,9 @@ jQuery(function() {
         minLength: 2,
         source: function(request, response) {
         	//loadCacheData(request.term);
-					console.log("called");
-                    console.log(response);
+					console.log("called")
             jQuery.ajax({
-                url: 'http://web.elb.stg.pikpakgo.use1.aws.rezos.io/pikpakgoReservations/ComponentSupport.do?method=locationData',
+                url: locationDataURL,
                 dataType: "script",
                 xhr: function () {
                     if (jQuery.browser.msie && jQuery.browser.msie){
@@ -320,9 +319,9 @@ jQuery(function() {
                     }
                 },
                 data: {
-                	partnerType:jQuery('#partnerType').val(),
-                	productType:jQuery('#engLoaded').val(),
-                	partnerId:jQuery('#partnerId').val(),
+                	partnerType:$('#partnerType').val(),
+                	productType:$('#engLoaded').val(),
+                	partnerId:$('#partnerId').val(),
                     term: request.term,
                     search_type: search_type,
 					bookingEngine: "Y",
@@ -331,7 +330,7 @@ jQuery(function() {
                     
                 },
                 success: function() {
-                   console.log(request);
+                   
                     var returnData =jQuery.map(jsonDataList.list.sort(sort_by('cna', false, function(a){return a})), function(item) {
                         var text = createLabel(item, 'city');
                         if(matcher(request.term, item.cna) || matcher(request.term, item.sbna)){
@@ -340,7 +339,7 @@ jQuery(function() {
                                     "(?![^&;]+;)(?!<[^<>]*)(" +
                                     request.term +
                                     ")(?![^<>]*>)(?![^&;]+;)", "gi"
-                                    ), "jQuery1"),
+                                    ), "$1"),
                                 value: item.cna,
                                 searchvalue:item.cid+"|"+item.cna+"|"+item.sid+"|"+item.cnid+"|"+item.sna+"|"+item.cnm+"|"+item.sbid,
                                 selectedcountry:item.cnm
@@ -374,9 +373,9 @@ jQuery(function() {
                     }
                 },
                 data: {
-                	partnerType:jQuery('#partnerType').val(),
-                	productType:jQuery('#engLoaded').val(),
-                	partnerId:jQuery('#partnerId').val(),
+                	partnerType:$('#partnerType').val(),
+                	productType:$('#engLoaded').val(),
+                	partnerId:$('#partnerId').val(),
                     term: request.term,
                     search_type: search_type,
 					bookingEngine: "Y",
@@ -393,7 +392,7 @@ jQuery(function() {
                                     "(?![^&;]+;)(?!<[^<>]*)(" +
                                     request.term +
                                     ")(?![^<>]*>)(?![^&;]+;)", "gi"
-                                    ), "jQuery1"),
+                                    ), "$1"),
                                 value: item.cna,
                                 searchvalue:item.cid+"|"+item.cna+"|"+item.sid+"|"+item.cnid+"|"+item.sna+"|"+item.cnm+"|"+item.sbid,
                            		selectedcountry:item.cnm
@@ -430,9 +429,9 @@ jQuery(function() {
                     }
                 },
                 data: {
-                	partnerType:jQuery('#partnerType').val(),
-                	productType:jQuery('#engLoaded').val(),
-                	partnerId:jQuery('#partnerId').val(),
+                	partnerType:$('#partnerType').val(),
+                	productType:$('#engLoaded').val(),
+                	partnerId:$('#partnerId').val(),
                     term: request.term,
                     search_type: search_type,
                     search_country: getDestinationCountry()
@@ -446,7 +445,7 @@ jQuery(function() {
                                     "(?![^&;]+;)(?!<[^<>]*)(" +
                                     request.term +
                                     ")(?![^<>]*>)(?![^&;]+;)", "gi"
-                                    ), "<strong>jQuery1</strong>"),
+                                    ), "<strong>$1</strong>"),
                                 value: item.cna,
                                 searchvalue:item.cid+"|"+item.cna+"|"+item.sid+"|"+item.cnid+"|"+item.sna+"|"+item.cnm+"|"+item.sbid
                             }
@@ -479,9 +478,9 @@ jQuery(function() {
                     }
                 },
                 data: {
-                	partnerType:jQuery('#partnerType').val(),
-                	productType:jQuery('#engLoaded').val(),
-                	partnerId:jQuery('#partnerId').val(),
+                	partnerType:$('#partnerType').val(),
+                	productType:$('#engLoaded').val(),
+                	partnerId:$('#partnerId').val(),
                     term: request.term,
                     search_type: search_type,
                     search_country: getDestinationCountry()
@@ -495,7 +494,7 @@ jQuery(function() {
                                     "(?![^&;]+;)(?!<[^<>]*)(" +
                                     request.term +
                                     ")(?![^<>]*>)(?![^&;]+;)", "gi"
-                                    ), "<strong>jQuery1</strong>"),
+                                    ), "<strong>$1</strong>"),
                                 value: item.cna,
                                 searchvalue:item.cid+"|"+item.cna+"|"+item.sid+"|"+item.cnid+"|"+item.sna+"|"+item.cnm+"|"+item.sbid
                             }
@@ -529,9 +528,9 @@ jQuery(function() {
                     }
                 },
                 data : {
-                	partnerType:jQuery('#partnerType').val(),
-                	productType:jQuery('#engLoaded').val(),
-                	partnerId:jQuery('#partnerId').val(),
+                	partnerType:$('#partnerType').val(),
+                	productType:$('#engLoaded').val(),
+                	partnerId:$('#partnerId').val(),
                 	airportType:"O",
                     term : request.term,
                     search_type : searchTypeSelector('V'),
@@ -552,7 +551,7 @@ jQuery(function() {
                                                 + request.term
                                                 + ")(?![^<>]*>)(?![^&;]+;)",
                                                 "gi"),
-                                            "jQuery1"),
+                                            "$1"),
                                         value : item.cna,
                                         searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.apnm + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                                     }
@@ -586,9 +585,9 @@ jQuery(function() {
                     }
                 },
                 data : {
-                	partnerType:jQuery('#partnerType').val(),
-                	productType:jQuery('#engLoaded').val(),
-                	partnerId:jQuery('#partnerId').val(),
+                	partnerType:$('#partnerType').val(),
+                	productType:$('#engLoaded').val(),
+                	partnerId:$('#partnerId').val(),
                 	airportType:"D",
                     term : request.term,
                     search_type : searchTypeSelector('V'),
@@ -608,7 +607,7 @@ jQuery(function() {
                                                 + request.term
                                                 + ")(?![^<>]*>)(?![^&;]+;)",
                                                 "gi"),
-                                            "jQuery1"),
+                                            "$1"),
                                         value : item.cna,
                                         searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.apnm + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                                     }
@@ -642,9 +641,9 @@ jQuery("#air_Loc_a").autocomplete({
                 }
             },
             data : {
-            	partnerType:jQuery('#partnerType').val(),
-            	productType:jQuery('#engLoaded').val(),
-            	partnerId:jQuery('#partnerId').val(),
+            	partnerType:$('#partnerType').val(),
+            	productType:$('#engLoaded').val(),
+            	partnerId:$('#partnerId').val(),
             	airportType: "O",
                 term : request.term,
                 search_type : searchTypeSelector('F'),
@@ -664,7 +663,7 @@ jQuery("#air_Loc_a").autocomplete({
                                             + request.term
                                             + ")(?![^<>]*>)(?![^&;]+;)",
                                             "gi"),
-                                        "jQuery1"),
+                                        "$1"),
                                     value : item.cna,
                                     searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.apnm + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                                 }
@@ -695,9 +694,9 @@ jQuery("#air_Loc_dep_m_2").autocomplete({
                 }
             },
             data : {
-            	partnerType:jQuery('#partnerType').val(),
-            	productType:jQuery('#engLoaded').val(),
-            	partnerId:jQuery('#partnerId').val(),
+            	partnerType:$('#partnerType').val(),
+            	productType:$('#engLoaded').val(),
+            	partnerId:$('#partnerId').val(),
             	airportType: "O",
                 term : request.term,
                 search_type : searchTypeSelector('F'),
@@ -717,7 +716,7 @@ jQuery("#air_Loc_dep_m_2").autocomplete({
                                             + request.term
                                             + ")(?![^<>]*>)(?![^&;]+;)",
                                             "gi"),
-                                        "jQuery1"),
+                                        "$1"),
                                     value : item.cna,
                                     searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.apnm + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                                 }
@@ -748,9 +747,9 @@ jQuery("#air_Loc_dep_m_3").autocomplete({
                 }
             },
             data : {
-            	partnerType:jQuery('#partnerType').val(),
-            	productType:jQuery('#engLoaded').val(),
-            	partnerId:jQuery('#partnerId').val(),
+            	partnerType:$('#partnerType').val(),
+            	productType:$('#engLoaded').val(),
+            	partnerId:$('#partnerId').val(),
             	airportType: "O",
                 term : request.term,
                 search_type : searchTypeSelector('F'),
@@ -770,7 +769,7 @@ jQuery("#air_Loc_dep_m_3").autocomplete({
                                             + request.term
                                             + ")(?![^<>]*>)(?![^&;]+;)",
                                             "gi"),
-                                        "jQuery1"),
+                                        "$1"),
                                     value : item.cna,
                                     searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.apnm + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                                 }
@@ -800,9 +799,9 @@ jQuery("#air_Loc_dep_m_4").autocomplete({
                 }
             },
             data : {
-            	partnerType:jQuery('#partnerType').val(),
-            	productType:jQuery('#engLoaded').val(),
-            	partnerId:jQuery('#partnerId').val(),
+            	partnerType:$('#partnerType').val(),
+            	productType:$('#engLoaded').val(),
+            	partnerId:$('#partnerId').val(),
             	airportType: "O",
                 term : request.term,
                 search_type : searchTypeSelector('F'),
@@ -822,7 +821,7 @@ jQuery("#air_Loc_dep_m_4").autocomplete({
                                             + request.term
                                             + ")(?![^<>]*>)(?![^&;]+;)",
                                             "gi"),
-                                        "jQuery1"),
+                                        "$1"),
                                     value : item.cna,
                                     searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.apnm + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                                 }
@@ -853,9 +852,9 @@ jQuery("#air_Loc_dep_m_5").autocomplete({
                 }
             },
             data : {
-            	partnerType:jQuery('#partnerType').val(),
-            	productType:jQuery('#engLoaded').val(),
-            	partnerId:jQuery('#partnerId').val(),
+            	partnerType:$('#partnerType').val(),
+            	productType:$('#engLoaded').val(),
+            	partnerId:$('#partnerId').val(),
             	airportType: "O",
                 term : request.term,
                 search_type : searchTypeSelector('F'),
@@ -875,7 +874,7 @@ jQuery("#air_Loc_dep_m_5").autocomplete({
                                             + request.term
                                             + ")(?![^<>]*>)(?![^&;]+;)",
                                             "gi"),
-                                        "jQuery1"),
+                                        "$1"),
                                     value : item.cna,
                                     searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.apnm + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                                 }
@@ -915,9 +914,9 @@ jQuery("#air_Loc1_a").autocomplete({
                 }
             },
             data : {
-            	partnerType:jQuery('#partnerType').val(),
-            	productType:jQuery('#engLoaded').val(),
-            	partnerId:jQuery('#partnerId').val(),
+            	partnerType:$('#partnerType').val(),
+            	productType:$('#engLoaded').val(),
+            	partnerId:$('#partnerId').val(),
             	airportType: "D",
                 term : request.term,
                 search_type : searchTypeSelector('F'),
@@ -937,7 +936,7 @@ jQuery("#air_Loc1_a").autocomplete({
                                             + request.term
                                             + ")(?![^<>]*>)(?![^&;]+;)",
                                             "gi"),
-                                        "jQuery1"),
+                                        "$1"),
                                     value : item.cna,
                                     searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.apnm + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                                 }
@@ -975,9 +974,9 @@ jQuery("#air_Loc_to_m_2").autocomplete({
                 }
             },
             data : {
-            	partnerType:jQuery('#partnerType').val(),
-            	productType:jQuery('#engLoaded').val(),
-            	partnerId:jQuery('#partnerId').val(),
+            	partnerType:$('#partnerType').val(),
+            	productType:$('#engLoaded').val(),
+            	partnerId:$('#partnerId').val(),
             	airportType: "D",
                 term : request.term,
                 search_type : searchTypeSelector('F'),
@@ -997,7 +996,7 @@ jQuery("#air_Loc_to_m_2").autocomplete({
                                             + request.term
                                             + ")(?![^<>]*>)(?![^&;]+;)",
                                             "gi"),
-                                        "jQuery1"),
+                                        "$1"),
                                     value : item.cna,
                                     searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.apnm + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                                 }
@@ -1036,9 +1035,9 @@ jQuery("#air_Loc_to_m_3").autocomplete({
                 }
             },
             data : {
-            	partnerType:jQuery('#partnerType').val(),
-            	productType:jQuery('#engLoaded').val(),
-            	partnerId:jQuery('#partnerId').val(),
+            	partnerType:$('#partnerType').val(),
+            	productType:$('#engLoaded').val(),
+            	partnerId:$('#partnerId').val(),
             	airportType: "D",
                 term : request.term,
                 search_type : searchTypeSelector('F'),
@@ -1058,7 +1057,7 @@ jQuery("#air_Loc_to_m_3").autocomplete({
                                             + request.term
                                             + ")(?![^<>]*>)(?![^&;]+;)",
                                             "gi"),
-                                        "jQuery1"),
+                                        "$1"),
                                     value : item.cna,
                                     searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.apnm + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                                 }
@@ -1096,9 +1095,9 @@ jQuery("#air_Loc_to_m_4").autocomplete({
                 }
             },
             data : {
-            	partnerType:jQuery('#partnerType').val(),
-            	productType:jQuery('#engLoaded').val(),
-            	partnerId:jQuery('#partnerId').val(),
+            	partnerType:$('#partnerType').val(),
+            	productType:$('#engLoaded').val(),
+            	partnerId:$('#partnerId').val(),
             	airportType: "D",
                 term : request.term,
                 search_type : searchTypeSelector('F'),
@@ -1118,7 +1117,7 @@ jQuery("#air_Loc_to_m_4").autocomplete({
                                             + request.term
                                             + ")(?![^<>]*>)(?![^&;]+;)",
                                             "gi"),
-                                        "jQuery1"),
+                                        "$1"),
                                     value : item.cna,
                                     searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.apnm + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                                 }
@@ -1156,9 +1155,9 @@ jQuery("#air_Loc_to_m_5").autocomplete({
                 }
             },
             data : {
-            	partnerType:jQuery('#partnerType').val(),
-            	productType:jQuery('#engLoaded').val(),
-            	partnerId:jQuery('#partnerId').val(),
+            	partnerType:$('#partnerType').val(),
+            	productType:$('#engLoaded').val(),
+            	partnerId:$('#partnerId').val(),
             	airportType: "D",
                 term : request.term,
                 search_type : searchTypeSelector('F'),
@@ -1178,7 +1177,7 @@ jQuery("#air_Loc_to_m_5").autocomplete({
                                             + request.term
                                             + ")(?![^<>]*>)(?![^&;]+;)",
                                             "gi"),
-                                        "jQuery1"),
+                                        "$1"),
                                     value : item.cna,
                                     searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.apnm + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                                 }
@@ -1211,9 +1210,9 @@ source : function(request, response) {
             }
         },
         data : {
-        	partnerType:jQuery('#partnerType').val(),
-        	productType:jQuery('#engLoaded').val(),
-        	partnerId:jQuery('#partnerId').val(),
+        	partnerType:$('#partnerType').val(),
+        	productType:$('#engLoaded').val(),
+        	partnerId:$('#partnerId').val(),
             term : request.term,
             search_type : searchTypeSelector('F'),
             search_country: getDestinationCountry()
@@ -1230,7 +1229,7 @@ source : function(request, response) {
                                         + request.term
                                         + ")(?![^<>]*>)(?![^&;]+;)",
                                         "gi"),
-                                    "<strong>jQuery1</strong>"),
+                                    "<strong>$1</strong>"),
                                 value : item.cna,
                                 searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.apnm + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                             }
@@ -1280,7 +1279,7 @@ source : function(request, response) {
                                         + request.term
                                         + ")(?![^<>]*>)(?![^&;]+;)",
                                         "gi"),
-                                    "<strong>jQuery1</strong>"),
+                                    "<strong>$1</strong>"),
                                 value : item.cna,
                                 searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.apnm + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                             }
@@ -1314,9 +1313,9 @@ source : function(request, response) {
             }
         },
         data : {
-        	partnerType:jQuery('#partnerType').val(),
-        	productType:jQuery('#engLoaded').val(),
-        	partnerId:jQuery('#partnerId').val(),
+        	partnerType:$('#partnerType').val(),
+        	productType:$('#engLoaded').val(),
+        	partnerId:$('#partnerId').val(),
             term : request.term,
             search_type : searchTypeSelector('F'),
             search_country: getDestinationCountry()
@@ -1333,7 +1332,7 @@ source : function(request, response) {
                                         + request.term
                                         + ")(?![^<>]*>)(?![^&;]+;)",
                                         "gi"),
-                                    "<strong>jQuery1</strong>"),
+                                    "<strong>$1</strong>"),
                                 value : item.cna,
                                 searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.apnm + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                             }
@@ -1367,9 +1366,9 @@ source : function(request, response) {
             }
         },
         data : {
-        	partnerType:jQuery('#partnerType').val(),
-        	productType:jQuery('#engLoaded').val(),
-        	partnerId:jQuery('#partnerId').val(),
+        	partnerType:$('#partnerType').val(),
+        	productType:$('#engLoaded').val(),
+        	partnerId:$('#partnerId').val(),
             term : request.term,
             search_type : searchTypeSelector('F'),
             search_country: getDestinationCountry()
@@ -1386,7 +1385,7 @@ source : function(request, response) {
                                         + request.term
                                         + ")(?![^<>]*>)(?![^&;]+;)",
                                         "gi"),
-                                    "<strong>jQuery1</strong>"),
+                                    "<strong>$1</strong>"),
                                 value : item.cna,
                                 searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.apnm + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                             }
@@ -1420,9 +1419,9 @@ source : function(request, response) {
             }
         },
         data : {
-        	partnerType:jQuery('#partnerType').val(),
-        	productType:jQuery('#engLoaded').val(),
-        	partnerId:jQuery('#partnerId').val(),
+        	partnerType:$('#partnerType').val(),
+        	productType:$('#engLoaded').val(),
+        	partnerId:$('#partnerId').val(),
             term : request.term,
             search_type : searchTypeSelector('F'),
             search_country: getDestinationCountry()
@@ -1439,7 +1438,7 @@ source : function(request, response) {
                                         + request.term
                                         + ")(?![^<>]*>)(?![^&;]+;)",
                                         "gi"),
-                                    "<strong>jQuery1</strong>"),
+                                    "<strong>$1</strong>"),
                                 value : item.cna,
                                 searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.apnm + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                             }
@@ -1473,9 +1472,9 @@ source : function(request, response) {
             }
         },
         data : {
-        	partnerType:jQuery('#partnerType').val(),
-        	productType:jQuery('#engLoaded').val(),
-        	partnerId:jQuery('#partnerId').val(),
+        	partnerType:$('#partnerType').val(),
+        	productType:$('#engLoaded').val(),
+        	partnerId:$('#partnerId').val(),
             term : request.term,
             search_type : searchTypeSelector('F'),
             search_country: getDestinationCountry()
@@ -1492,7 +1491,7 @@ source : function(request, response) {
                                         + request.term
                                         + ")(?![^<>]*>)(?![^&;]+;)",
                                         "gi"),
-                                    "<strong>jQuery1</strong>"),
+                                    "<strong>$1</strong>"),
                                 value : item.cna,
                                 searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.apnm + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                             }
@@ -1526,9 +1525,9 @@ source : function(request, response) {
             }
         },
         data : {
-        	partnerType:jQuery('#partnerType').val(),
-        	productType:jQuery('#engLoaded').val(),
-        	partnerId:jQuery('#partnerId').val(),
+        	partnerType:$('#partnerType').val(),
+        	productType:$('#engLoaded').val(),
+        	partnerId:$('#partnerId').val(),
             term : request.term,
             search_type : searchTypeSelector('F'),
             search_country: getDestinationCountry()
@@ -1545,7 +1544,7 @@ source : function(request, response) {
                                         + request.term
                                         + ")(?![^<>]*>)(?![^&;]+;)",
                                         "gi"),
-                                    "<strong>jQuery1</strong>"),
+                                    "<strong>$1</strong>"),
                                 value : item.cna,
                                 searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.apnm + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                             }
@@ -1579,9 +1578,9 @@ source : function(request, response) {
             }
         },
         data : {
-        	partnerType:jQuery('#partnerType').val(),
-        	productType:jQuery('#engLoaded').val(),
-        	partnerId:jQuery('#partnerId').val(),
+        	partnerType:$('#partnerType').val(),
+        	productType:$('#engLoaded').val(),
+        	partnerId:$('#partnerId').val(),
             term : request.term,
             search_type : searchTypeSelector('F'),
             search_country: getDestinationCountry()
@@ -1598,7 +1597,7 @@ source : function(request, response) {
                                         + request.term
                                         + ")(?![^<>]*>)(?![^&;]+;)",
                                         "gi"),
-                                    "<strong>jQuery1</strong>"),
+                                    "<strong>$1</strong>"),
                                 value : item.cna,
                                 searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.apnm + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                             }
@@ -1632,9 +1631,9 @@ source : function(request, response) {
             }
         },
         data : {
-        	partnerType:jQuery('#partnerType').val(),
-        	productType:jQuery('#engLoaded').val(),
-        	partnerId:jQuery('#partnerId').val(),
+        	partnerType:$('#partnerType').val(),
+        	productType:$('#engLoaded').val(),
+        	partnerId:$('#partnerId').val(),
             term : request.term,
             search_type : searchTypeSelector('F'),
             search_country: getDestinationCountry()
@@ -1651,7 +1650,7 @@ source : function(request, response) {
                                         + request.term
                                         + ")(?![^<>]*>)(?![^&;]+;)",
                                         "gi"),
-                                    "<strong>jQuery1</strong>"),
+                                    "<strong>$1</strong>"),
                                 value : item.cna,
                                 searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.apnm + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                             }
@@ -1685,9 +1684,9 @@ source : function(request, response) {
             }
         },
         data : {
-        	partnerType:jQuery('#partnerType').val(),
-        	productType:jQuery('#engLoaded').val(),
-        	partnerId:jQuery('#partnerId').val(),
+        	partnerType:$('#partnerType').val(),
+        	productType:$('#engLoaded').val(),
+        	partnerId:$('#partnerId').val(),
             term : request.term,
             search_type : searchTypeSelector('F'),
             search_country: getDestinationCountry()
@@ -1704,7 +1703,7 @@ source : function(request, response) {
                                         + request.term
                                         + ")(?![^<>]*>)(?![^&;]+;)",
                                         "gi"),
-                                    "<strong>jQuery1</strong>"),
+                                    "<strong>$1</strong>"),
                                 value : item.cna,
                                 searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.apnm + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                             }
@@ -1738,9 +1737,9 @@ source: function(request, response) {
             }
         },
         data: {
-        	partnerType:jQuery('#partnerType').val(),
-        	productType:jQuery('#engLoaded').val(),
-        	partnerId:jQuery('#partnerId').val(),
+        	partnerType:$('#partnerType').val(),
+        	productType:$('#engLoaded').val(),
+        	partnerId:$('#partnerId').val(),
             term: request.term,
             search_type: search_type,
             search_country: getDestinationCountry()
@@ -1754,7 +1753,7 @@ source: function(request, response) {
                             "(?![^&;]+;)(?!<[^<>]*)(" +
                             request.term +
                             ")(?![^<>]*>)(?![^&;]+;)", "gi"
-                            ), "<strong>jQuery1</strong>"),
+                            ), "<strong>$1</strong>"),
                         value: item.cna,
                         searchvalue:item.cid+"|"+item.cna+"|"+item.sid+"|"+item.cnid+"|"+item.sna+"|"+item.cnm+"|"+item.sbid
                     }
@@ -1787,9 +1786,9 @@ source: function(request, response) {
             }
         },
         data: {
-        	partnerType:jQuery('#partnerType').val(),
-        	productType:jQuery('#engLoaded').val(),
-        	partnerId:jQuery('#partnerId').val(),
+        	partnerType:$('#partnerType').val(),
+        	productType:$('#engLoaded').val(),
+        	partnerId:$('#partnerId').val(),
             term: request.term,
             search_type: searchTypeSelector('H'),
             search_country: getDestinationCountry()
@@ -1803,7 +1802,7 @@ source: function(request, response) {
                             "(?![^&;]+;)(?!<[^<>]*)(" +
                             request.term +
                             ")(?![^<>]*>)(?![^&;]+;)", "gi"
-                            ), "<strong>jQuery1</strong>"),
+                            ), "<strong>$1</strong>"),
                         value: item.cna,
                         searchvalue:item.cid+"|"+item.cna+"|"+item.sid+"|"+item.cnid+"|"+item.sna+"|"+item.cnm+"|"+item.sbid
                     }
@@ -1837,9 +1836,9 @@ source : function(request, response) {
             }
         },
         data : {
-        	partnerType:jQuery('#partnerType').val(),
-        	productType:jQuery('#engLoaded').val(),
-        	partnerId:jQuery('#partnerId').val(),
+        	partnerType:$('#partnerType').val(),
+        	productType:$('#engLoaded').val(),
+        	partnerId:$('#partnerId').val(),
             term : request.term,
             search_type : searchTypeSelector('C'),
 			callBack: "callbackCities",
@@ -1858,7 +1857,7 @@ source : function(request, response) {
                                         + request.term
                                         + ")(?![^<>]*>)(?![^&;]+;)",
                                         "gi"),
-                                    "jQuery1"),
+                                    "$1"),
                                     value : item.cna,
                                     searchvalue : item.cna + "|" + item.cid + "|" + item.cid + "|" + item.cna + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                             }
@@ -1901,9 +1900,9 @@ jQuery("#car_Loc1").autocomplete({
             }
         },
         data : {
-        	partnerType:jQuery('#partnerType').val(),
-        	productType:jQuery('#engLoaded').val(),
-        	partnerId:jQuery('#partnerId').val(),
+        	partnerType:$('#partnerType').val(),
+        	productType:$('#engLoaded').val(),
+        	partnerId:$('#partnerId').val(),
             term : request.term,
             search_type : searchTypeSelector('C'),
 			callBack: "callbackCities",
@@ -1922,7 +1921,7 @@ jQuery("#car_Loc1").autocomplete({
                                         + request.term
                                         + ")(?![^<>]*>)(?![^&;]+;)",
                                         "gi"),
-                                    "jQuery1"),
+                                    "$1"),
                                     value : item.cna,
                                     searchvalue : item.cna + "|" + item.cid + "|" + item.cid + "|" + item.cna + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                               }
@@ -1955,9 +1954,9 @@ source: function(request, response) {
             }
         },
         data: {
-        	partnerType:jQuery('#partnerType').val(),
-        	productType:jQuery('#engLoaded').val(),
-        	partnerId:jQuery('#partnerId').val(),
+        	partnerType:$('#partnerType').val(),
+        	productType:$('#engLoaded').val(),
+        	partnerId:$('#partnerId').val(),
             term: request.term,
             search_type: searchTypeSelector('HC'),
             search_country: getDestinationCountry()
@@ -1971,7 +1970,7 @@ source: function(request, response) {
                             "(?![^&;]+;)(?!<[^<>]*)(" +
                             request.term +
                             ")(?![^<>]*>)(?![^&;]+;)", "gi"
-                            ), "<strong>jQuery1</strong>"),
+                            ), "<strong>$1</strong>"),
                         value: item.cna,
                         searchvalue:item.cid+"|"+item.cna+"|"+item.sid+"|"+item.cnid+"|"+item.sna+"|"+item.cnm+"|"+item.sbid
                     }
@@ -2005,9 +2004,9 @@ source : function(request, response) {
             }
         },
         data : {
-        	partnerType:jQuery('#partnerType').val(),
-        	productType:jQuery('#engLoaded').val(),
-        	partnerId:jQuery('#partnerId').val(),
+        	partnerType:$('#partnerType').val(),
+        	productType:$('#engLoaded').val(),
+        	partnerId:$('#partnerId').val(),
             term : request.term,
             search_type : searchTypeSelector('C'),
 			callBack: "callbackCities",
@@ -2026,7 +2025,7 @@ source : function(request, response) {
                                         + request.term
                                         + ")(?![^<>]*>)(?![^&;]+;)",
                                         "gi"),
-                                    "<strong>jQuery1</strong>"),
+                                    "<strong>$1</strong>"),
                                 value : item.cna,
                                 searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.cna + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                             }
@@ -2061,9 +2060,9 @@ source : function(request, response) {
             }
         },
         data : {
-        	partnerType:jQuery('#partnerType').val(),
-        	productType:jQuery('#engLoaded').val(),
-        	partnerId:jQuery('#partnerId').val(),
+        	partnerType:$('#partnerType').val(),
+        	productType:$('#engLoaded').val(),
+        	partnerId:$('#partnerId').val(),
             term : request.term,
             search_type : searchTypeSelector('C'),
 			callBack: "callbackCities",
@@ -2082,7 +2081,7 @@ source : function(request, response) {
                                         + request.term
                                         + ")(?![^<>]*>)(?![^&;]+;)",
                                         "gi"),
-                                    "<strong>jQuery1</strong>"),
+                                    "<strong>$1</strong>"),
                                 value : item.cna,
                                 searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.cna + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                             }
@@ -2116,9 +2115,9 @@ source : function(request, response) {
             }
         },
         data : {
-        	partnerType:jQuery('#partnerType').val(),
-        	productType:jQuery('#engLoaded').val(),
-        	partnerId:jQuery('#partnerId').val(),
+        	partnerType:$('#partnerType').val(),
+        	productType:$('#engLoaded').val(),
+        	partnerId:$('#partnerId').val(),
             term : request.term,
             search_type : searchTypeSelector('F'),
             search_country: getDestinationCountry()
@@ -2135,7 +2134,7 @@ source : function(request, response) {
                                         + request.term
                                         + ")(?![^<>]*>)(?![^&;]+;)",
                                         "gi"),
-                                    "<strong>jQuery1</strong>"),
+                                    "<strong>$1</strong>"),
                                 value : item.cna,
                                 searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.apnm + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                             }
@@ -2169,9 +2168,9 @@ source : function(request, response) {
             }
         },
         data : {
-        	partnerType:jQuery('#partnerType').val(),
-        	productType:jQuery('#engLoaded').val(),
-        	partnerId:jQuery('#partnerId').val(),
+        	partnerType:$('#partnerType').val(),
+        	productType:$('#engLoaded').val(),
+        	partnerId:$('#partnerId').val(),
             term : request.term,
             search_type : searchTypeSelector('F'),
             search_country: getDestinationCountry()
@@ -2188,7 +2187,7 @@ source : function(request, response) {
                                         + request.term
                                         + ")(?![^<>]*>)(?![^&;]+;)",
                                         "gi"),
-                                    "<strong>jQuery1</strong>"),
+                                    "<strong>$1</strong>"),
                                 value : item.cna,
                                 searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.apnm + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                             }
@@ -2222,9 +2221,9 @@ source : function(request, response) {
             }
         },
         data : {
-        	partnerType:jQuery('#partnerType').val(),
-        	productType:jQuery('#engLoaded').val(),
-        	partnerId:jQuery('#partnerId').val(),
+        	partnerType:$('#partnerType').val(),
+        	productType:$('#engLoaded').val(),
+        	partnerId:$('#partnerId').val(),
             term : request.term,
             search_type : searchTypeSelector('F'),
             search_country: getDestinationCountry()
@@ -2241,7 +2240,7 @@ source : function(request, response) {
                                         + request.term
                                         + ")(?![^<>]*>)(?![^&;]+;)",
                                         "gi"),
-                                    "<strong>jQuery1</strong>"),
+                                    "<strong>$1</strong>"),
                                 value : item.cna,
                                 searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.apnm + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                             }
@@ -2275,9 +2274,9 @@ source : function(request, response) {
             }
         },
         data : {
-        	partnerType:jQuery('#partnerType').val(),
-        	productType:jQuery('#engLoaded').val(),
-        	partnerId:jQuery('#partnerId').val(),
+        	partnerType:$('#partnerType').val(),
+        	productType:$('#engLoaded').val(),
+        	partnerId:$('#partnerId').val(),
             term : request.term,
             search_type : searchTypeSelector('F'),
             search_country: getDestinationCountry()
@@ -2294,7 +2293,7 @@ source : function(request, response) {
                                         + request.term
                                         + ")(?![^<>]*>)(?![^&;]+;)",
                                         "gi"),
-                                    "<strong>jQuery1</strong>"),
+                                    "<strong>$1</strong>"),
                                 value : item.cna,
                                 searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.apnm + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                             }
@@ -2328,9 +2327,9 @@ source : function(request, response) {
             }
         },
         data : {
-        	partnerType:jQuery('#partnerType').val(),
-        	productType:jQuery('#engLoaded').val(),
-        	partnerId:jQuery('#partnerId').val(),
+        	partnerType:$('#partnerType').val(),
+        	productType:$('#engLoaded').val(),
+        	partnerId:$('#partnerId').val(),
             term : request.term,
             search_type : searchTypeSelector('C'),
             search_country: getDestinationCountry()
@@ -2347,7 +2346,7 @@ source : function(request, response) {
                                         + request.term
                                         + ")(?![^<>]*>)(?![^&;]+;)",
                                         "gi"),
-                                    "<strong>jQuery1</strong>"),
+                                    "<strong>$1</strong>"),
                                 value : item.cna,
                                 searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.cna + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                             }
@@ -2382,9 +2381,9 @@ source : function(request, response) {
             }
         },
         data : {
-        	partnerType:jQuery('#partnerType').val(),
-        	productType:jQuery('#engLoaded').val(),
-        	partnerId:jQuery('#partnerId').val(),
+        	partnerType:$('#partnerType').val(),
+        	productType:$('#engLoaded').val(),
+        	partnerId:$('#partnerId').val(),
             term : request.term,
             search_type : searchTypeSelector('C'),
             search_country: getDestinationCountry()
@@ -2401,7 +2400,7 @@ source : function(request, response) {
                                         + request.term
                                         + ")(?![^<>]*>)(?![^&;]+;)",
                                         "gi"),
-                                    "<strong>jQuery1</strong>"),
+                                    "<strong>$1</strong>"),
                                 value : item.cna,
                                 searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.cna + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
                             }
@@ -2436,9 +2435,9 @@ source: function(request, response) {
             }
         },
         data: {
-        	partnerType:jQuery('#partnerType').val(),
-        	productType:jQuery('#engLoaded').val(),
-        	partnerId:jQuery('#partnerId').val(),
+        	partnerType:$('#partnerType').val(),
+        	productType:$('#engLoaded').val(),
+        	partnerId:$('#partnerId').val(),
             term: request.term,
             search_type: search_type,
 			bookingEngine: "Y",
@@ -2454,7 +2453,7 @@ source: function(request, response) {
                             "(?![^&;]+;)(?!<[^<>]*)(" +
                             request.term +
                             ")(?![^<>]*>)(?![^&;]+;)", "gi"
-                            ), "jQuery1"),
+                            ), "$1"),
                         value: item.cna,
                         searchvalue:item.cid+"|"+item.cna+"|"+item.sid+"|"+item.cnid+"|"+item.sna+"|"+item.cnm+"|"+item.sbid
                     }
@@ -2487,9 +2486,9 @@ source: function(request, response) {
             }
         },
         data: {
-        	partnerType:jQuery('#partnerType').val(),
-        	productType:jQuery('#engLoaded').val(),
-        	partnerId:jQuery('#partnerId').val(),
+        	partnerType:$('#partnerType').val(),
+        	productType:$('#engLoaded').val(),
+        	partnerId:$('#partnerId').val(),
             term: request.term,
             search_type: search_type,
 			bookingEngine: "Y",
@@ -2505,7 +2504,7 @@ source: function(request, response) {
                             "(?![^&;]+;)(?!<[^<>]*)(" +
                             request.term +
                             ")(?![^<>]*>)(?![^&;]+;)", "gi"
-                            ), "jQuery1"),
+                            ), "$1"),
                         value: item.cna,
                         searchvalue:item.cid+"|"+item.cna+"|"+item.sid+"|"+item.cnid+"|"+item.sna+"|"+item.cnm+"|"+item.sbid
                     }
@@ -2538,9 +2537,9 @@ source: function(request, response) {
             }
         },
         data: {
-        	partnerType:jQuery('#partnerType').val(),
-        	productType:jQuery('#engLoaded').val(),
-        	partnerId:jQuery('#partnerId').val(),
+        	partnerType:$('#partnerType').val(),
+        	productType:$('#engLoaded').val(),
+        	partnerId:$('#partnerId').val(),
             term: request.term,
             search_type: search_type,
 			bookingEngine: "Y",
@@ -2556,7 +2555,7 @@ source: function(request, response) {
                             "(?![^&;]+;)(?!<[^<>]*)(" +
                             request.term +
                             ")(?![^<>]*>)(?![^&;]+;)", "gi"
-                            ), "jQuery1"),
+                            ), "$1"),
                         value: item.cna,
                         searchvalue:item.cid+"|"+item.cna+"|"+item.sid+"|"+item.cnid+"|"+item.sna+"|"+item.cnm+"|"+item.sbid
                     }
@@ -2589,9 +2588,9 @@ source: function(request, response) {
             }
         },
         data: {
-        	partnerType:jQuery('#partnerType').val(),
-        	productType:jQuery('#engLoaded').val(),
-        	partnerId:jQuery('#partnerId').val(),
+        	partnerType:$('#partnerType').val(),
+        	productType:$('#engLoaded').val(),
+        	partnerId:$('#partnerId').val(),
             term: request.term,
             search_type: search_type,
 			bookingEngine: "Y",
@@ -2607,7 +2606,7 @@ source: function(request, response) {
                             "(?![^&;]+;)(?!<[^<>]*)(" +
                             request.term +
                             ")(?![^<>]*>)(?![^&;]+;)", "gi"
-                            ), "jQuery1"),
+                            ), "$1"),
                         value: item.cna,
                         searchvalue : item.cid+"|"+item.cna+"|"+item.sid+"|"+item.cnid+"|"+item.sna+"|"+item.cnm+"|"+item.sbid
                     }
@@ -2881,7 +2880,7 @@ loadFpkgCountryAutocomplete();
 
 
 function selectDestinationCountry(country){
-	if(jQuery('.destination_country_H').css('display') == 'none' || jQuery('.destination_country_HS').css('display') == 'none' )
+	if($('.destination_country_H').css('display') == 'none' || $('.destination_country_HS').css('display') == 'none' )
 		return;
 	try{
 	for(i=0; i<document.getElementById("destinationcountry").options.length-1; i++){
@@ -2893,7 +2892,7 @@ function selectDestinationCountry(country){
 	}
 }
 function selectDestinationCountry_A(country){
-	if(jQuery('.destination_country_A').css('display') == 'none' || jQuery('.destination_country_AS').css('display') == 'none' )
+	if($('.destination_country_A').css('display') == 'none' || $('.destination_country_AS').css('display') == 'none' )
 		return;
 	try{
 	for(i=0; i<document.getElementById("destinationcountry_A").options.length-1; i++){
@@ -2936,9 +2935,9 @@ function loadFpkgCountryAutocomplete(){
 	                }
 	            },
 	            data: {
-	            	partnerType:jQuery('#partnerType').val(),
-                	productType:jQuery('#engLoaded').val(),
-                	partnerId:jQuery('#partnerId').val(),
+	            	partnerType:$('#partnerType').val(),
+                	productType:$('#engLoaded').val(),
+                	partnerId:$('#partnerId').val(),
 	                term: request.term,
 	                search_type: search_type,
 					bookingEngine: "Y",
@@ -2956,7 +2955,7 @@ function loadFpkgCountryAutocomplete(){
 	                                "(?![^&;]+;)(?!<[^<>]*)(" +
 	                                request.term +
 	                                ")(?![^<>]*>)(?![^&;]+;)", "gi"
-	                                ), "jQuery1"),
+	                                ), "$1"),
 	                            value: item.cna,
 	                            searchvalue:item.cid+"|"+item.cna+"|"+item.sid+"|"+item.cnid+"|"+item.sna+"|"+item.cnm+"|"+item.sbid,
 	                            selectedcountry:item.cnm
@@ -2996,9 +2995,9 @@ function loadFpkgCountryAutocomplete(){
 	            }
 	        },
 	        data : {
-	        	partnerType:jQuery('#partnerType').val(),
-            	productType:jQuery('#engLoaded').val(),
-            	partnerId:jQuery('#partnerId').val(),
+	        	partnerType:$('#partnerType').val(),
+            	productType:$('#engLoaded').val(),
+            	partnerId:$('#partnerId').val(),
 	            term : request.term,
 	            search_type : searchTypeSelector('F'),
 				callBack: "callbackCities",
@@ -3018,7 +3017,7 @@ function loadFpkgCountryAutocomplete(){
 	                                        + request.term
 	                                        + ")(?![^<>]*>)(?![^&;]+;)",
 	                                        "gi"),
-	                                    "jQuery1"),
+	                                    "$1"),
 	                                value : item.cna,
 	                                searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.apnm + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
 	                            }
@@ -3053,9 +3052,9 @@ function loadFpkgCountryAutocomplete(){
 	            }
 	        },
 	        data : {
-	        	partnerType:jQuery('#partnerType').val(),
-            	productType:jQuery('#engLoaded').val(),
-            	partnerId:jQuery('#partnerId').val(),
+	        	partnerType:$('#partnerType').val(),
+            	productType:$('#engLoaded').val(),
+            	partnerId:$('#partnerId').val(),
 	            term : request.term,
 	            search_type : searchTypeSelector('F'),
 				callBack: "callbackCities",
@@ -3074,7 +3073,7 @@ function loadFpkgCountryAutocomplete(){
 	                                        + request.term
 	                                        + ")(?![^<>]*>)(?![^&;]+;)",
 	                                        "gi"),
-	                                    "jQuery1"),
+	                                    "$1"),
 	                                value : item.cna,
 	                                searchvalue : item.cna + "|" + item.apcd + "|" + item.cid + "|" + item.apnm + "|" + item.sid + "|" + item.cnid  + "|" + item.sna + "|" + item.cnm
 	                            }
@@ -3142,13 +3141,13 @@ function loadHotelDestinationAutoComplete(){
 	                }
 	            },
 	            data: {
-	            	partnerType:jQuery('#partnerType').val(),
-	            	productType:jQuery('#engLoaded').val(),
-	            	partnerId:jQuery('#partnerId').val(),
+	            	partnerType:$('#partnerType').val(),
+	            	productType:$('#engLoaded').val(),
+	            	partnerId:$('#partnerId').val(),
 	                term: request.term,
 	                search_type: searchTypeSelector('H'),
 					bookingEngine: "Y",
-					search_country: jQuery('#hid_H_Loc_V').val().split('|')[5],
+					search_country: $('#hid_H_Loc_V').val().split('|')[5],
 					callBack: "callbackCities"
 	                
 	            },
@@ -3162,7 +3161,7 @@ function loadHotelDestinationAutoComplete(){
 	                                "(?![^&;]+;)(?!<[^<>]*)(" +
 	                                request.term +
 	                                ")(?![^<>]*>)(?![^&;]+;)", "gi"
-	                                ), "jQuery1"),
+	                                ), "$1"),
 	                            value: item.cna,
 	                            searchvalue:item.cid+"|"+item.cna+"|"+item.sid+"|"+item.cnid+"|"+item.sna+"|"+item.cnm+"|"+item.sbid,
 	                            selectedcountry:item.cnm
