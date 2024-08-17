@@ -222,6 +222,21 @@ function reservation_system_shortcode()
 
       
     });
+
+    function affiliateTimer(){
+	try{
+		//console.log($('#partnerType').val());
+	if('AFF'==$('#partnerType').val()){
+		try{$('.discountcoupon').hide();}catch(e){}
+		try{$('#promotionCodeDiv_F').hide();}catch(e){}
+		
+	}else{
+		try{$('.discountcoupon').show();}catch(e){}
+		try{$('#promotionCodeDiv_F').show();}catch(e){}
+	}
+	}catch(e){}
+	setTimeout('affiliateTimer()',1000);
+}
   </script>
 
   <div class="disablebg" id="disablebg"></div>
@@ -262,9 +277,8 @@ function reservation_system_shortcode()
   <div id="dialogs3" style="display:none" title="Error">
      Please select two different locations for arrival & departure 
   </div>
-
   <form name="ResPkgSearchForm" id="ResPkgSearchForm" method="post" action="" target="_parent">
-    <input type="hidden" id="isFlexSearch" name="isFlexSearch" />
+    <input type="hidden" id="isFlexSearch" name="isFlexSearch"/>
     <input type="hidden" id="discountCouponNo" name="discountCouponNo" />
     <input type="hidden" id="place" name="place" />
     <input type="hidden" id="transectionId" name="transectionId" />
@@ -316,12 +330,12 @@ function reservation_system_shortcode()
     <input type="hidden" id="childAges" name="childAges" />
     <input type="hidden" id="numberOfInfants" name="numberOfInfants" />
     <input type="hidden" id="numberOfSeniors" name="numberOfSeniors" />
-    <input type="hidden" id="portalBEC" name="portalBEC" value="Y" />
+    <input type="hidden" id="portalBEC" name="portalBEC"  value="Y"/>
     <input type="hidden" id="starRating" name="starRating" />
     <input type="hidden" id="hotelType" name="hotelType" />
     <input type="hidden" id="airLine" name="airLine" />
     <input type="hidden" id="carType" name="carType" />
-    <input type="hidden" id="portal" name="portal" value="pikpakgo" />
+    <input type="hidden" id="portal" name="portal"  value="pikpakgo" />
     <input type="hidden" id="userCode" name="userCode" />
     <input type="hidden" id="userName" name="userName" />
     <input type="hidden" id="userPassword" name="userPassword" />
@@ -357,11 +371,14 @@ function reservation_system_shortcode()
     <input type="hidden" id="tripType" name="tripType" />
     <input type="hidden" id="actionPath" name="actionPath" />
     <input type="hidden" id="pkgType" name="pkgType" />
-    <input type="hidden" id="affCode" name="affCode" value="-" />
+    <input type="hidden" id="affCode" name="affCode" value="-"/>
     <input type="hidden" id="targetField" name="targetField" />
     <input type="hidden" id="partnerCategory" name="partnerCategory" />
     <input type="hidden" name="destinationCountry" id="destinationCountry" />
     <input type="hidden" name="activityTypeId" id="activityTypeId" />
+
+    <input type="hidden" id="multiLangCityName" name="multiLangCityName" />
+
     <!-- Hotel filters -->
     <input type="hidden" id="hotelStarId" name="hotelStarId" />
     <input type="hidden" id="hotelTypeId" name="hotelTypeId" />
@@ -372,6 +389,7 @@ function reservation_system_shortcode()
     <input type="hidden" id="onRequestHotels" name="onRequestHotels" />
     <input type="hidden" id="starRating_Hotels" name="starRating_Hotels" />
     <input type="hidden" id="sortHotelBy" name="sortHotelBy" />
+    <input type="hidden" id="hotelSearchType" name="hotelSearchType" />
     <!-- For flights -->
     <input type="hidden" id="nonStopStatus" name="nonStopStatus" />
     <!-- For transfers -->
@@ -393,8 +411,6 @@ function reservation_system_shortcode()
     <input type="hidden" id="selectedFixedPackageTypeName" name="selectedFixedPackageTypeName" />
     <input type="hidden" id="ipAddress" name="ipAddress" />
     <input type="hidden" id="clientCountryCode" name="clientCountryCode" />
-
-
   </form>
 
   <form name="form1" method="post" action="" id="form1">
@@ -579,6 +595,7 @@ add_shortcode('reservation_system', 'reservation_system_shortcode');
 
 
 function enqueue_reservation_system_assets() {
+  wp_enqueue_script( 'jquery' );
   // Enqueue CSS files
   wp_enqueue_style('jquery-ui-css', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css');
   wp_enqueue_style('jquery-autocomplete-css', 'https://cdn.jsdelivr.net/npm/jquery-autocomplete@1.2.8/jquery.autocomplete.min.css');
