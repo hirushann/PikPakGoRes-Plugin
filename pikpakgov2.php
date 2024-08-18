@@ -16,12 +16,10 @@ function enqueue_reservation_system_assets() {
   // wp_enqueue_style('jquery-datepicker-css', 'https://cdn.jsdelivr.net/npm/jquery-datepicker@1.12.3/jquery-datepicker.min.js');
   wp_enqueue_style('main-style', plugin_dir_url(__FILE__) . 'assets/css/style.css');
 
-  // Enqueue JS files
-  wp_enqueue_script('jquery');
   wp_enqueue_script('jquery-datepicker', 'https://cdn.jsdelivr.net/npm/jquery-datepicker@1.12.3/jquery-datepicker.min.js', array('jquery'), '1.12.3', true);
   wp_enqueue_script('jquery-easing', 'https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js', array('jquery'), '1.4.1', true);
-  wp_enqueue_script('jquery-autcomplete-js', 'https://cdn.jsdelivr.net/npm/jquery-autocomplete@1.2.8/jquery.autocomplete.min.js', array('jquery'), '1.2.8', true);
-  wp_enqueue_script('autocomplete-script', plugin_dir_url(__FILE__) . 'assets/js/autocomplete.js', array('jquery'), '1.1.0', true);
+  wp_enqueue_script('jquery-autcomplete-js', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jquery.auto-complete.min.js', array('jquery'), '1.2.8', true);
+  wp_enqueue_script('autocomplete-script', plugin_dir_url(__FILE__) . 'assets/js/autocomplete.js', array('jquery', 'jquery-autcomplete-js'), '1.1.0', true);
   wp_enqueue_script('scripts-js', plugin_dir_url(__FILE__) . 'assets/js/scripts.js?v=1', array('jquery'), null, true);
 }
 add_action('wp_enqueue_scripts', 'enqueue_reservation_system_assets');
@@ -65,8 +63,9 @@ function reservation_system_shortcode()
             transectionId: $('#transectionId').val()
           },
           success: function(data) {
-            console.log(data)
-            var locationList = eval(data);
+            // console.log(data)
+            var locationList = $.parseJSON(data).localizeJson;
+            // var locationList = eval(data);
             if (locationList.length > 0) {
               $('#ipAddress').val(locationList[0].ipAddress);
               $('#clientCountryCode').val(locationList[0].clientCountryCode);
