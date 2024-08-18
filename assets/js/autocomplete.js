@@ -307,7 +307,6 @@ jQuery(function() {
         minLength: 2,
         source: function(request, response) {
         	//loadCacheData(request.term);
-					console.log("called")
             jQuery.ajax({
                 url: locationDataURL,
                 dataType: "script",
@@ -327,10 +326,8 @@ jQuery(function() {
 					bookingEngine: "Y",
 					search_country: getDestinationCountry(),
 					callBack: "callbackCities"
-                    
                 },
-                success: function() {
-                   
+                success: function(t) {
                     var returnData =jQuery.map(jsonDataList.list.sort(sort_by('cna', false, function(a){return a})), function(item) {
                         var text = createLabel(item, 'city');
                         if(matcher(request.term, item.cna) || matcher(request.term, item.sbna)){
@@ -349,7 +346,9 @@ jQuery(function() {
                     //addCacheData(request.term, returnData);
                     response(returnData);
 
-                }
+                }, error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus, errorThrown);
+                  } 
             });
         }
     });
