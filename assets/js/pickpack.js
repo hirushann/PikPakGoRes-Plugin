@@ -261,13 +261,12 @@ jQuery(document).ready(function ($) {
 
    var hotelNameList;
    function loadHotelNameViaEar() {
-      $(document).ready(function () {
          $("#H_name").autocomplete({
             minLength: 2,
             source: function (request, response) {
                $.ajax({
                   url:
-                     subURL +
+                     subUrl +
                      "ComponentSupport.do?method=getBookingEngineFiltersAndCustomization",
                   dataType: "script",
                   xhr: function () {
@@ -295,8 +294,12 @@ jQuery(document).ready(function ($) {
          $("#H_name").bind("autocompleteselect", function (event, ui) {
             $("#H_ridecode").val(ui.item.rideId);
          });
-      });
    }
+
+   window.loadHotelName = function loadHotelName(jsonString){
+        hotelNameList=jsonString;
+    }
+
    function loadCarTypeViaEar() {
       $(document).ready(function () {
          if ($.cookie("becCarType") != null) {
