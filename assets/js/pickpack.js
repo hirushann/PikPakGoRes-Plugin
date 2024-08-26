@@ -1407,7 +1407,7 @@ console.log($('input[name="hotelSearchType"]:checked').val())
       }
    }
 
-   function showages(pkgtype, roomno, val) {
+   window.showages = function showages(pkgtype, roomno, val) {
       $("#" + pkgtype + "_room_" + roomno + "_ages").empty();
       $("#" + pkgtype + "_room_" + roomno + "_ages").append(showagesstring(pkgtype, roomno, val));
    }
