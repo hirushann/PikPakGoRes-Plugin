@@ -3,7 +3,7 @@
 Plugin Name: Reservations for PikPakGo - V2
 Plugin URI: http://example.com/custom-elements-plugin
 Description: A plugin that integrated a reservation system for PikPakGo by shortcode.
-Version: 1.1
+Version: 1.2
 Author: Hirushan Perera
 License: GPL2
 */
@@ -30,6 +30,7 @@ function pickpack_enqueue()
 add_action('wp_enqueue_scripts', 'pickpack_enqueue');
 
 function pickpack_frontend_form(){
+ 
 ?>
   <div class="reservations-plugin-container">
     <form name="form1" method="post" action="" id="form1">
@@ -57,7 +58,6 @@ function pickpack_frontend_form(){
                 </span>
               </label>
             </div>
-            
             <div class="form-input-container">
               <label class="option-sub-label radio-inputs">
                 <input type="radio" class="radio-input" id="vacationSearchRadioBox" name="hotelSearchType" checked='yes' value="vacationhome" onclick='displayRooms()'>

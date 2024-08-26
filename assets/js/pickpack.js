@@ -1273,7 +1273,7 @@ function matcher(regex, text){
         }
       }
 
-      $("#ho_departure_temp").datepicker({
+      let initDep = $("#ho_departure_temp").datepicker({
         dateFormat: dateFormatKey,
         defaultDate: +2,
         onSelect: DatePicked,
@@ -1282,7 +1282,7 @@ function matcher(regex, text){
         minDate: '2d'
       });
 
-      $("#ho_arrival_temp").datepicker({
+      let initArr = $("#ho_arrival_temp").datepicker({
         dateFormat: dateFormatKey,	
         defaultDate: +3,
         onSelect: DatePicked,
@@ -1290,6 +1290,9 @@ function matcher(regex, text){
         buttonText: 'Show Calendar',
         minDate: '3d'
     });
+
+    $('#checkInDate').val(initDep.datepicker("getDate"));
+    $('#checkOutDate').val(initArr.datepicker("getDate"));
     
     $("#H_nights").change(DatePicked);
     DatePicked();
@@ -1445,6 +1448,28 @@ function matcher(regex, text){
             $('#roomCombo'+e).empty();
             $('#roomCombo'+e).append(roomoccstring(e,val,bec));
         }
+
+        function displayRooms() {
+	
+            var hotelSearchRadioBox = document.getElementById("hotelSearchRadioBox");
+            var vacationSearchRadioBox = document.getElementById("vacationSearchRadioBox");
+            
+            if (hotelSearchRadioBox.checked == true){
+                $("#room_display_unit").show();
+                $("#hType_h_main").hide();
+                $("#hotel_type_H").hide();
+                $("#hotel-vacation_name_H_id").html("Hotel Name");
+                $("#vacation-home-label-id").html("Hotel Availability");
+                
+            } else if (vacationSearchRadioBox.checked == true){
+                $("#norooms_H").val("1").change();
+                $("#room_display_unit").hide();
+                $("#hType_h_main").show();
+                $("#hotel_type_H").show();
+                $("#hotel-vacation_name_H_id").html("Vacation Home Name");
+                $("#vacation-home-label-id").html("Vacation Home Availability");
+            } 
+          }
 
         function roomoccstring(e,val,bec){
             var occstring = '';
