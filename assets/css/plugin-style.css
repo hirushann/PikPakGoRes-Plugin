@@ -45,7 +45,7 @@ body.page-template-default.page.page-id-7.logged-in.admin-bar.no-customize-suppo
 
 .reservations-plugin-container #search_btns_h {
     background: #5E5DF0;
-    border-radius: 999px;
+    border-radius: 8px;
     box-shadow: #5E5DF0 0 10px 20px -10px;
     box-sizing: border-box;
     color: #FFFFFF;
@@ -94,7 +94,7 @@ body.page-template-default.page.page-id-7.logged-in.admin-bar.no-customize-suppo
     border: 1px #818CF8 solid;
 }
   
-.form-text-input-container input.text-input {
+.form-text-input-container input.text-input, input#priceLevelFrom_H, input#priceLevelTo_H {
     padding: 15px 14px;
     font-size: 0.75rem;
     border: 2px #818CF8 solid;
@@ -286,4 +286,133 @@ ul.hotel-date-time-block {
     width: 40%;
     justify-content: center;
     align-items: center;
+}
+
+.people-select-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#roomComboH .hotel-passenger-block ul {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+    margin-bottom: 0px;
+}
+
+#roomComboH {
+    width: 100%;
+}
+
+.hotel-passenger-block{
+    width: 100%;
+}
+
+li#H_room_1_ages, li#H_room_2_ages, li#H_room_3_ages, li#H_room_4_ages {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+li.flight-child-age {
+    display: flex;
+    width: 75%;
+    justify-content: center;
+}
+
+.flight-child-age div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+}
+
+select#R1occAdults_H, select#R1occChildren_H, select#R2occAdults_H, select#R2occChildren_H, select#R3occAdults_H, select#R3occChildren_H, select#R4occAdults_H, select#R4occChildren_H, select#H_nights, select#norooms_H, select#H_consumerCurrencyCode {
+    width: 100%;
+}
+
+span.hotel-passenger-label-text {
+    display: block;
+    color: #FFFFFF;
+}
+
+.people-select-container .option-main-label {
+    margin-bottom: 15px;
+}
+
+li div.hide_filter a.show_filter {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+svg#arrow_down {
+    fill: #FFF;
+    margin-left: 10px;
+    margin-top: 2px;
+}
+
+li.flight-child-label {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+li.flight-child-age div select{
+    width: 70% !important;
+}
+
+.ul-morefilters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+
+div#star_rating_div_H {
+    width: 20%;
+}
+
+div#hotel_name_H {
+    width: 20%;
+}
+
+div#pref_cur_H {
+    width: 15%;
+}   
+
+div#inv_type_H {
+    width: 20%;
+}
+
+div#prc_lvl_H {
+    width: 15%;
+}
+
+.inventory-types ul {
+    display: flex;
+    gap: 10px;
+}
+
+.hotel-price-level ul {
+    display: flex;
+    gap: 10px;
+}
+
+#star_rating_div_H .textleft.marginfix {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }

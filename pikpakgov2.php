@@ -40,7 +40,7 @@ function pickpack_frontend_form(){
 
       <div class="main_holder" id="hotelDisplay" style="display:block; ">
       <div class="bec_container_div cf" >
-      <ul class="outer-container-ul">
+      < class="outer-container-ul">
         <div class="first-row-container">
             <div class="residence-country-block">
               <div class="option-main-label-2 option-main-label row3" id="h_search_type_lbl_div">
@@ -392,17 +392,18 @@ function pickpack_frontend_form(){
         </div>
 
         
-        <li>
+        <div class="people-select-container">
           <div class="polka-dots"></div>
           <div class="option-main-label">
             <h1>How Many People ?</h1>
           </div>
-          <div id="roomComboH" class="hotel-passengers" style="display:block;"></div>
-        </li>
+          <div id="roomComboH" class="hotel-passengers" style="display:flex;"></div>
+        </div>
+
         <li class="morefilters" style="display:none;">
-          <div class="polka-dots"></div>
-          <ul>
-            <li class="hotel-morefilters" id="star_rating_div_H">
+          <div class="ul-morefilters">
+
+            <div class="hotel-morefilters" id="star_rating_div_H">
               <div class=" textleft marginfix">
                 <label class="option-sub-label display-block">Star Rating</label>
                 <select id="star_rating_H" name="greeknumber" class="user-options-select row10">
@@ -416,8 +417,9 @@ function pickpack_frontend_form(){
                   <option value="7EST">7 Star</option>
                 </select>
               </div>
-            </li>
-            <li class="hotel-morefilters" id="hotel_type_H" style='display:none'>
+            </div>
+
+            <div class="hotel-morefilters" id="hotel_type_H" style='display:none'>
               <div class="textleft marginfix " id ="hType_h_main">
                 <label class="option-sub-label display-block">Hotel  Type</label>
                 <select id="hType_h" name="hType_h" class="user-options-select row10">
@@ -454,15 +456,17 @@ function pickpack_frontend_form(){
                   <option value="15">Weekend Special</option>
                 </select>
               </div>
-            </li>
-            <li class="hotel-morefilters" id="hotel_name_H" >
+            </div>
+
+            <div class="hotel-morefilters" id="hotel_name_H" >
               <div class="marginfix textleft form-text-input-container">
                 <label class="option-sub-label display-block label-text-input" id="hotel-vacation_name_H_id">Vacation Home Name</label>
                 <input name="H_name" id="H_name" type="text" class="user-options-select row10 text-input" onClick="return validate('formHN');" validate="formHN" require="Select hotel name from the dropdown for internal hotels only or type freeform name for both internal and/or third party inventory."/>
                 <input type="hidden" id="H_ridecode"  name="H_ridecode" />
               </div>
-            </li>          
-            <li class="hotel-morefilters" id="pref_cur_H" >
+            </div> 
+
+            <div class="hotel-morefilters" id="pref_cur_H" >
               <div class="marginfix textleft">
                 <div id="h_curr_lbl_div">
                   <label class="option-sub-label display-block"> Preferred Currency</label>
@@ -494,15 +498,17 @@ function pickpack_frontend_form(){
                   </select>
                 </div>
               </div>
-            </li>         
-            <li id="promotionCodeDiv_H" class="hotel-morefilters">
+            </div> 
+
+            <div id="promotionCodeDiv_H" class="hotel-morefilters">
               <div class="textleft marginfix discountcoupon">
                 <label class="option-sub-label display-block">Promotion Code</label>
                 <input type="text" class="user-options-select row10" id="discountCoupon_No_H" name="discountCoupon_No_H">
                 </input>
               </div>
-            </li>
-            <li class="hotel-morefilters width100" id="inv_type_H" >
+            </div>
+
+            <div class="hotel-morefilters width100" id="inv_type_H" >
               <div class="inventory-types">
                 <label class="option-sub-label display-block" id="vacation-home-label-id">Vacation Home Availability</label>
                 <ul>
@@ -520,8 +526,9 @@ function pickpack_frontend_form(){
                   </li>
                 </ul>
               </div>
-            </li>
-            <li class="hotel-morefilters width100" id="prc_lvl_H" >
+            </div>
+
+            <div class="hotel-morefilters width100" id="prc_lvl_H" >
               <div class="hotel-price-level">
                 <label class="option-sub-label display-block">Price Range</label>
                 <ul>
@@ -539,15 +546,26 @@ function pickpack_frontend_form(){
                   </li>
                 </ul>
               </div>
-            </li>
-          </ul>
+            </div>
+
+          </div>
         </li>
+
         <li>
-          <div class="hide_filter"><a href="#" class="show_filter">Show Additional Search Options<span id='arrow_down' class='arrow_down'>&nbsp;&nbsp;&nbsp;</span></a></div>
+          <div class="hide_filter">
+            <a href="#" class="show_filter">
+              Show Additional Search Options
+              <!-- <span id='arrow_down' class='arrow_down'>&nbsp;&nbsp;&nbsp;</span> -->
+              <svg xmlns="http://www.w3.org/2000/svg" fill="#FFFFFFF" width="20" height="20" id='arrow_down' class='arrow_down' viewBox="0 0 512 512"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>
+            </a>
+          </div>
         </li>
+
         <li class="cf"> <a onClick="return validate('formH');"   href="JavaScript:search('H');" class="search-button">
           <div id="search_btns_h">Search</div>
-          </a> </li>
+          </a> 
+        </li>
+
       </ul>
     </div>
       </div>
