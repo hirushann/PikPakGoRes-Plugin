@@ -1,0 +1,241 @@
+body.page-template-default.page.page-id-7.logged-in.admin-bar.no-customize-support.wp-embed-responsive {
+    background: #000;
+}
+
+.reservations-plugin-container {
+    max-width: 1440px;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(13.7px);
+    -webkit-backdrop-filter: blur(13.7px);
+    border: 1px solid rgba(255, 255, 255, 0.73);
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+}
+
+.reservations-plugin-container div#bec_wrapper_div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.reservations-plugin-container h1 {
+    font-size: 20px;
+    font-weight: 600;
+    font-family: "Manrope", sans-serif;
+    margin: 0px;
+    padding: 0;
+    color: #FFFFFF;
+}
+
+.reservations-plugin-container ul {
+    list-style: none;
+}
+
+.reservations-plugin-container label, a {
+    color: #FFFFFF;
+}
+
+.reservations-plugin-container #search_btns_h {
+    background: #5E5DF0;
+    border-radius: 999px;
+    box-shadow: #5E5DF0 0 10px 20px -10px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: "Manrope", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    opacity: 1;
+    outline: 0 solid transparent;
+    padding: 8px 18px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 80%;
+    word-break: break-word;
+    border: 0;
+    margin: auto;
+    text-align: center;
+}
+
+.reservations-plugin-container a {
+    text-decoration: none;
+}
+
+/* text input styling */
+.form-text-input-container {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    position: static;
+    width: 100%;
+}
+  
+.form-text-input-container label.label-text-input {
+    font-size: 0.75rem;
+    color: #818CF8;
+    font-weight: 700;
+    position: relative;
+    top: 0.7rem;
+    margin: 0 0 0 7px;
+    padding: 1px 10px;
+    background: #e8e8e8;
+    width: fit-content;
+    border-radius: 5px;
+    border: 1px #818CF8 solid;
+}
+  
+.form-text-input-container input.text-input {
+    padding: 15px 14px;
+    font-size: 0.75rem;
+    border: 2px #818CF8 solid;
+    border-radius: 5px;
+    background: #e8e8e8;
+    width: 100%;
+}
+
+.form-text-input-container input.text-input:focus {
+    outline: none;
+}
+
+/* radio input styling */
+.radio-inputs > * {
+    margin: 6px;
+}
+  
+.radio-input:checked + .radio-tile {
+    border-color: #2260ff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    color: #2260ff;
+}
+  
+.radio-input:checked + .radio-tile:before {
+    transform: scale(1);
+    opacity: 1;
+    background-color: #2260ff;
+    border-color: #2260ff;
+}
+  
+.radio-input:checked + .radio-tile .radio-icon svg {
+    fill: #2260ff;
+}
+  
+.radio-input:checked + .radio-tile .radio-label {
+    color: #2260ff;
+}
+  
+.radio-input:focus + .radio-tile {
+    border-color: #2260ff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1), 0 0 0 4px #b5c9fc;
+}
+  
+.radio-input:focus + .radio-tile:before {
+    transform: scale(1);
+    opacity: 1;
+}
+  
+.radio-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    min-height: 80px;
+    border-radius: 0.5rem;
+    border: 2px solid #b5bfd9;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    transition: 0.15s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.radio-tile:before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 0.75rem;
+    height: 0.75rem;
+    border: 2px solid #b5bfd9;
+    background-color: #fff;
+    border-radius: 50%;
+    top: 0.25rem;
+    left: 0.25rem;
+    opacity: 0;
+    transform: scale(0);
+    transition: 0.25s ease;
+}
+  
+.radio-tile:hover {
+    border-color: #2260ff;
+}
+  
+.radio-tile:hover:before {
+    transform: scale(1);
+    opacity: 1;
+}
+  
+.radio-icon svg {
+    width: 2rem;
+    height: 2rem;
+    fill: #494949;
+}
+  
+.radio-label {
+    color: #707070;
+    transition: 0.375s ease;
+    text-align: center;
+    font-size: 13px;
+}
+  
+.radio-input {
+    clip: rect(0 0 0 0);
+    -webkit-clip-path: inset(100%);
+    clip-path: inset(100%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.reservations-plugin-container #h_search_type_div{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* select fields styles */
+select {
+    /* Reset */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 10px 0px;
+    font-size: 0.75rem;
+    border: 2px #818CF8 solid;
+    border-radius: 5px;
+    background: #e8e8e8;
+    width: 50%;
+    cursor: pointer;
+    text-align: center;
+}
+select::-ms-expand {
+    display: none;
+}
+select:focus {
+    outline: none;
+}
+select option {
+    color: inherit;
+    background-color: var(--option-bg);
+}

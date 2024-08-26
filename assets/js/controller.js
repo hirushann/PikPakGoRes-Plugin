@@ -236,7 +236,7 @@ function doIWC(p) {
 			if (p.data.payment || p.data.cart) {
 				if((p.data.remove) && (p.data.onlyoneitem)){
 					if (p.data.cart) {
-						 jQuery( "#confirmMsgDiv" ).dialog({
+						 $( "#confirmMsgDiv" ).dialog({
 							 resizable: true,
 							 height:180,
 							 modal: true,title: 'Alert!',
@@ -256,8 +256,8 @@ function doIWC(p) {
 											if ('OK' == respObj.status) {
 												doIWC(new IWCParams("RESULTS", "SUMMERY", "RELOAD", "", {}, '', '0'))
 												if(!p.data.remove){
-													doIWC(new IWCParams('RESULTS','UPSELLING','LOAD','',{'product':p.data.product},'','jQuery{wid}'));
-													//jQuery("html, body").animate({ scrollTop: 0 }, "slow");
+													doIWC(new IWCParams('RESULTS','UPSELLING','LOAD','',{'product':p.data.product},'','${wid}'));
+													//$("html, body").animate({ scrollTop: 0 }, "slow");
 												}
 											} else if('WRN' == respObj.status) {
 												
@@ -267,12 +267,12 @@ function doIWC(p) {
 														//	widjects[z].refresh(respObj.status);
 														}
 													}
-													doIWC(new IWCParams('ADD_PRODUCT','WARNING','DISPLAY','',{'title':'','message':respObj.message,'itemcode':respObj.itemcode,'additionalvalues':respObj.additionalValues,'append':false},'','jQuery{wid}'));
+													doIWC(new IWCParams('ADD_PRODUCT','WARNING','DISPLAY','',{'title':'','message':respObj.message,'itemcode':respObj.itemcode,'additionalvalues':respObj.additionalValues,'append':false},'','${wid}'));
 												}else{
 													respObj.additionalValues.product = p.data.product;
 													respObj.additionalValues.remove = p.data.remove;
 													doIWC(new IWCParams("RESULTS", "SUMMERY", "RELOAD", "", {}, '', '0'))
-													doIWC(new IWCParams('ADD_PRODUCT','WARNING','DISPLAY','',{'title':'','message':respObj.message,'itemcode':respObj.itemcode,'additionalvalues':respObj.additionalValues,'append':false},'','jQuery{wid}'));
+													doIWC(new IWCParams('ADD_PRODUCT','WARNING','DISPLAY','',{'title':'','message':respObj.message,'itemcode':respObj.itemcode,'additionalvalues':respObj.additionalValues,'append':false},'','${wid}'));
 												}
 											
 											}else{
@@ -280,7 +280,7 @@ function doIWC(p) {
 													if('ERR' == respObj.status) {
 														try{setProCookie("show_criteria_"+proTranId,"N");	/* Y/N */}catch(e){}
 														doIWC(new IWCParams("RESULTS", "SUMMERY", "RELOAD", "", {}, '', '0'))
-														doIWC(new IWCParams('ADD_PRODUCT','ERROR','DISPLAY','',{'title':'','message':respObj.message,'append':false},'','jQuery{wid}'));
+														doIWC(new IWCParams('ADD_PRODUCT','ERROR','DISPLAY','',{'title':'','message':respObj.message,'append':false},'','${wid}'));
 													}
 														
 													for ( var z = 0; z < widjects.length; z++) {
@@ -291,7 +291,7 @@ function doIWC(p) {
 												}else{
 													try{setProCookie("show_criteria_"+proTranId,"N");	/* Y/N */}catch(e){}
 													doIWC(new IWCParams("RESULTS", "SUMMERY", "RELOAD", "", {}, '', '0'))
-													doIWC(new IWCParams('ADD_PRODUCT','ERROR','DISPLAY','',{'title':'','message':respObj.message,'append':false},'','jQuery{wid}'));
+													doIWC(new IWCParams('ADD_PRODUCT','ERROR','DISPLAY','',{'title':'','message':respObj.message,'append':false},'','${wid}'));
 												}
 											}
 											doIWC(new IWCParams("RESULTS", "PRELOADER", "HIDE", "", {}, '', '0'))
@@ -306,16 +306,16 @@ function doIWC(p) {
 												}, 500);												
 											}
 										}catch(e){alert(e);}
-										jQuery(this).dialog("close");
+										$(this).dialog("close");
 								 },
 								 "No": function() {
-								 	jQuery(this).dialog( "close" );
+								 	$(this).dialog( "close" );
 								 }
 								 
 							 }
 						 });
 					} else {
-						jQuery( "#confirmMsgDiv" ).dialog({
+						$( "#confirmMsgDiv" ).dialog({
 							 resizable: true,
 							 height:180,
 							 modal: true,title: 'Warning!',
@@ -325,7 +325,7 @@ function doIWC(p) {
 									window.location=p.data.weblink;
 								 },
 								 "No": function() {
-								 	jQuery(this).dialog( "close" );
+								 	$(this).dialog( "close" );
 								 }
 							 }
 						 });
@@ -345,8 +345,8 @@ function doIWC(p) {
 						if ('OK' == respObj.status) {
 							doIWC(new IWCParams("RESULTS", "SUMMERY", "RELOAD", "", {}, '', '0'))
 							if(!p.data.remove){
-								doIWC(new IWCParams('RESULTS','UPSELLING','LOAD','',{'product':p.data.product},'','jQuery{wid}'));
-								//jQuery("html, body").animate({ scrollTop: 0 }, "slow");
+								doIWC(new IWCParams('RESULTS','UPSELLING','LOAD','',{'product':p.data.product},'','${wid}'));
+								//$("html, body").animate({ scrollTop: 0 }, "slow");
 							}
 						} else if('WRN' == respObj.status) {
 							
@@ -356,12 +356,12 @@ function doIWC(p) {
 										//widjects[z].refresh(respObj.status);
 									}
 								}
-								doIWC(new IWCParams('ADD_PRODUCT','WARNING','DISPLAY','',{'title':'','message':respObj.message,'itemcode':respObj.itemcode,'additionalvalues':respObj.additionalValues,'append':false},'','jQuery{wid}'));
+								doIWC(new IWCParams('ADD_PRODUCT','WARNING','DISPLAY','',{'title':'','message':respObj.message,'itemcode':respObj.itemcode,'additionalvalues':respObj.additionalValues,'append':false},'','${wid}'));
 							}else{
 								respObj.additionalValues.product = p.data.product;
 								respObj.additionalValues.remove = p.data.remove;
 								doIWC(new IWCParams("RESULTS", "SUMMERY", "RELOAD", "", {}, '', '0'))
-								doIWC(new IWCParams('ADD_PRODUCT','WARNING','DISPLAY','',{'title':'','message':respObj.message,'itemcode':respObj.itemcode,'additionalvalues':respObj.additionalValues,'append':false},'','jQuery{wid}'));
+								doIWC(new IWCParams('ADD_PRODUCT','WARNING','DISPLAY','',{'title':'','message':respObj.message,'itemcode':respObj.itemcode,'additionalvalues':respObj.additionalValues,'append':false},'','${wid}'));
 							}
 
 						}else{
@@ -369,7 +369,7 @@ function doIWC(p) {
 								if('ERR' == respObj.status) {
 									try{setProCookie("show_criteria_"+proTranId,"N");	/* Y/N */}catch(e){}
 									doIWC(new IWCParams("RESULTS", "SUMMERY", "RELOAD", "", {}, '', '0'))
-									doIWC(new IWCParams('ADD_PRODUCT','ERROR','DISPLAY','',{'title':'','message':respObj.message,'append':false},'','jQuery{wid}'));
+									doIWC(new IWCParams('ADD_PRODUCT','ERROR','DISPLAY','',{'title':'','message':respObj.message,'append':false},'','${wid}'));
 								}
 									
 								for ( var z = 0; z < widjects.length; z++) {
@@ -380,7 +380,7 @@ function doIWC(p) {
 							}else{
 								try{setProCookie("show_criteria_"+proTranId,"N");	/* Y/N */}catch(e){}
 								doIWC(new IWCParams("RESULTS", "SUMMERY", "RELOAD", "", {}, '', '0'))
-								doIWC(new IWCParams('ADD_PRODUCT','ERROR','DISPLAY','',{'title':'','message':respObj.message,'append':false},'','jQuery{wid}'));
+								doIWC(new IWCParams('ADD_PRODUCT','ERROR','DISPLAY','',{'title':'','message':respObj.message,'append':false},'','${wid}'));
 							}
 						}
 						doIWC(new IWCParams("RESULTS", "PRELOADER", "HIDE", "", {}, '', '0'))
@@ -407,7 +407,7 @@ function doIWC(p) {
 					fillFormFromJson(frm, p.data)
 					frm.submit();
 					try{
-					jQuery('.popup-container-upselling').hide();
+					$('.popup-container-upselling').hide();
 					}catch(e){}
 				}
 			} else {
@@ -426,8 +426,8 @@ function doIWC(p) {
 					if ('OK' == respObj.status) {
 						doIWC(new IWCParams("RESULTS", "SUMMERY", "RELOAD", "", {}, '', '0'))
 						if(!p.data.remove){
-							doIWC(new IWCParams('RESULTS','UPSELLING','LOAD','',{'product':p.data.product},'','jQuery{wid}'));
-							//jQuery("html, body").animate({ scrollTop: 0 }, "slow");
+							doIWC(new IWCParams('RESULTS','UPSELLING','LOAD','',{'product':p.data.product},'','${wid}'));
+							//$("html, body").animate({ scrollTop: 0 }, "slow");
 							try{upsellingCommonFAInit();}catch(e){}
 						}
 					} else if('WRN' == respObj.status) {
@@ -440,12 +440,12 @@ function doIWC(p) {
 							}
 							respObj.additionalValues.product = p.data.product;
 							respObj.additionalValues.remove = p.data.remove;
-							doIWC(new IWCParams('ADD_PRODUCT','WARNING','DISPLAY','',{'title':'','message':respObj.message,'itemcode':respObj.itemcode,'additionalvalues':respObj.additionalValues,'append':false},'','jQuery{wid}'));
+							doIWC(new IWCParams('ADD_PRODUCT','WARNING','DISPLAY','',{'title':'','message':respObj.message,'itemcode':respObj.itemcode,'additionalvalues':respObj.additionalValues,'append':false},'','${wid}'));
 						}else{
 							respObj.additionalValues.product = p.data.product;
 							respObj.additionalValues.remove = p.data.remove;
 							doIWC(new IWCParams("RESULTS", "SUMMERY", "RELOAD", "", {}, '', '0'))
-							doIWC(new IWCParams('ADD_PRODUCT','WARNING','DISPLAY','',{'title':'','message':respObj.message,'itemcode':respObj.itemcode,'additionalvalues':respObj.additionalValues,'append':false},'','jQuery{wid}'));
+							doIWC(new IWCParams('ADD_PRODUCT','WARNING','DISPLAY','',{'title':'','message':respObj.message,'itemcode':respObj.itemcode,'additionalvalues':respObj.additionalValues,'append':false},'','${wid}'));
 						}
 					
 					}else{
@@ -453,7 +453,7 @@ function doIWC(p) {
 							if('ERR' == respObj.status) {
 								try{setProCookie("show_criteria_"+proTranId,"N");	/* Y/N */}catch(e){}
 								doIWC(new IWCParams("RESULTS", "SUMMERY", "RELOAD", "", {}, '', '0'))
-								doIWC(new IWCParams('ADD_PRODUCT','ERROR','DISPLAY','',{'title':'','message':respObj.message,'append':false},'','jQuery{wid}'));
+								doIWC(new IWCParams('ADD_PRODUCT','ERROR','DISPLAY','',{'title':'','message':respObj.message,'append':false},'','${wid}'));
 								setTimeout(hideAddContinueBar, 500);
 							}
 								
@@ -465,7 +465,7 @@ function doIWC(p) {
 						}else{
 							try{setProCookie("show_criteria_"+proTranId,"N");	/* Y/N */}catch(e){}
 							doIWC(new IWCParams("RESULTS", "SUMMERY", "RELOAD", "", {}, '', '0'))
-							doIWC(new IWCParams('ADD_PRODUCT','ERROR','DISPLAY','',{'title':'','message':respObj.message,'append':false},'','jQuery{wid}'));
+							doIWC(new IWCParams('ADD_PRODUCT','ERROR','DISPLAY','',{'title':'','message':respObj.message,'append':false},'','${wid}'));
 							setTimeout(hideAddContinueBar, 500);
 						}
 					}
@@ -895,7 +895,7 @@ function changeVacationItem(product,transectionId){
 	if("F"==product){
 		IWC(new IWCParams("RESULTS","CHANGE_FLIGHT","SHOW","",{},transectionId,0));
 	}else{
-		doIWC(new IWCParams('RESULTS','UPSELLING','RESULTS','',{'product':product},'','jQuery{wid}'));
+		doIWC(new IWCParams('RESULTS','UPSELLING','RESULTS','',{'product':product},'','${wid}'));
 	}
 }
 function changeFlight(product,transectionId){
@@ -905,7 +905,7 @@ function changeFlight(product,transectionId){
 }
 
 try{
-jQuery.fn.extractObject = function() {
+$.fn.extractObject = function() {
 	  var accum = {};
 	  function add(accum, namev, value) {
 		  try{
@@ -920,13 +920,13 @@ jQuery.fn.extractObject = function() {
 	  }; 
 	  this.find('input[type!=radio], textarea, select,input[type=radio]:checked').each(function() {
 		  try{
-			  	var val =  jQuery(this).val();
-			  	if(jQuery(this).attr('type')=='checkbox'){
-			  		if (!jQuery(this).attr('checked')){
+			  	var val =  $(this).val();
+			  	if($(this).attr('type')=='checkbox'){
+			  		if (!$(this).attr('checked')){
 			  			val = '';
 			  		}
 			  	}
-			  	add(accum, jQuery(this).attr('name').split('.'),val);
+			  	add(accum, $(this).attr('name').split('.'),val);
 		  }catch(e){}
 	  });
 	  return accum;
@@ -987,7 +987,7 @@ function validateSession(){
 			}
 		}
 		
-			jQuery.get(content_cdn_path+'Welcome.do?method=checksession&transectionId='+getUrlVars()["transectionId"], function(data) {
+			$.get(content_cdn_path+'Welcome.do?method=checksession&transectionId='+getUrlVars()["transectionId"], function(data) {
 		 	if("N"==data){
 		 		reloadParent();
 		 		window.location = window.location;
@@ -999,7 +999,7 @@ function validateSession(){
 	}
 }
 try{
-jQuery(document).ready(function(){
+$(document).ready(function(){
 	try{
 		//window.parent.postMessage('url@@'+window.location.href.toString(), '*');
 	}catch(e){
@@ -1026,7 +1026,7 @@ document.write(toolstr);
 try{
 var isCtrl = false;
  
-jQuery(document).keyup(function (e) {
+$(document).keyup(function (e) {
 	if(e.which == 17) isCtrl=false;
 }).keydown(function (e) {
 	if(e.which == 17) isCtrl=true;
@@ -1044,8 +1044,8 @@ function loadTool(){
 	if(window.parent != window || !getUrlVars()["transectionId"])
 		return;
 	
-	jQuery("#moniteringtoolif")[0].src = "traceviewer.jsp?transectionId="+getUrlVars()["transectionId"]+"&init=true";
-	jQuery('#moniteringtool').dialog({
+	$("#moniteringtoolif")[0].src = "traceviewer.jsp?transectionId="+getUrlVars()["transectionId"]+"&init=true";
+	$('#moniteringtool').dialog({
 		modal: false,
 		width: 1100,
 		resizable: false
@@ -1080,26 +1080,26 @@ function getPaginationString(currentPage,rpp,length,id,removeFromLastPage){
 	if(noofpgs > 1 ){
 	
 		if(currentPage >= 2){
-	    	 str+= '<span  class="page_first" ><a href="#RESULTS" onclick="doIWC(new IWCParams(\'PAGING\',\'RESULTS\',\'PAGE\',\'\', {\'pageNo\':'+(1)+'},\'\',\'jQuery{wid}\'))" >'+" <<  </a> </span>" 
+	    	 str+= '<span  class="page_first" ><a href="#RESULTS" onclick="doIWC(new IWCParams(\'PAGING\',\'RESULTS\',\'PAGE\',\'\', {\'pageNo\':'+(1)+'},\'\',\'${wid}\'))" >'+" <<  </a> </span>" 
 	     }         	
 	    
 	     if(currentPage-2>0)
-	     	str+= '<span  class="page_two"  ><a href="#RESULTS" onclick="doIWC(new IWCParams(\'PAGING\',\'RESULTS\',\'PAGE\',\'\', {\'pageNo\':'+(currentPage-2)+'},\'\',\'jQuery{wid}\'))" >'+ ((currentPage-3)*rpp+1)+'-'+((currentPage-3)*rpp + rpp) + "</a> </span>";
+	     	str+= '<span  class="page_two"  ><a href="#RESULTS" onclick="doIWC(new IWCParams(\'PAGING\',\'RESULTS\',\'PAGE\',\'\', {\'pageNo\':'+(currentPage-2)+'},\'\',\'${wid}\'))" >'+ ((currentPage-3)*rpp+1)+'-'+((currentPage-3)*rpp + rpp) + "</a> </span>";
 	     if(currentPage-1>0)
-	     	str+='<span  class="page_one"  ><a href="#RESULTS" onclick="doIWC(new IWCParams(\'PAGING\',\'RESULTS\',\'PAGE\',\'\', {\'pageNo\':'+(currentPage-1)+'},\'\',\'jQuery{wid}\'))" >'+ ((currentPage-2)*rpp+1)+'-'+((currentPage-2)*rpp + rpp) + "</a> </span>";
+	     	str+='<span  class="page_one"  ><a href="#RESULTS" onclick="doIWC(new IWCParams(\'PAGING\',\'RESULTS\',\'PAGE\',\'\', {\'pageNo\':'+(currentPage-1)+'},\'\',\'${wid}\'))" >'+ ((currentPage-2)*rpp+1)+'-'+((currentPage-2)*rpp + rpp) + "</a> </span>";
 	     
 	     str+= '<span  class="page_zero" >'+((currentPage-1)*rpp+1)+'-'+((currentPage-1)*rpp + rpp -((noofpgs ==  currentPage)?removeFromLastPage:0)) + " </span>";
 	     
 	     if(currentPage+1<=noofpgs)
-	     	str+= '<span  class="page_one_up"  ><a href="#RESULTS" onclick="doIWC(new IWCParams(\'PAGING\',\'RESULTS\',\'PAGE\',\'\', {\'pageNo\':'+(currentPage+1)+'},\'\',\'jQuery{wid}\'))" >'+ ((currentPage)*rpp+1)+'-'+((currentPage)*rpp + rpp-((noofpgs ==  currentPage+1)?removeFromLastPage:0)) + "</a> </span> ";
+	     	str+= '<span  class="page_one_up"  ><a href="#RESULTS" onclick="doIWC(new IWCParams(\'PAGING\',\'RESULTS\',\'PAGE\',\'\', {\'pageNo\':'+(currentPage+1)+'},\'\',\'${wid}\'))" >'+ ((currentPage)*rpp+1)+'-'+((currentPage)*rpp + rpp-((noofpgs ==  currentPage+1)?removeFromLastPage:0)) + "</a> </span> ";
 	     
 	     if(currentPage+2<=noofpgs)
-	     	str+= '<span  class="page_two_up" ><a href="#RESULTS" onclick="doIWC(new IWCParams(\'PAGING\',\'RESULTS\',\'PAGE\',\'\', {\'pageNo\':'+(currentPage+2)+'},\'\',\'jQuery{wid}\'))" >'+ ((currentPage+1)*rpp+1)+'-'+((currentPage+1)*rpp + rpp-((noofpgs ==  currentPage+2)?removeFromLastPage:0)) + "</a> </span>";
+	     	str+= '<span  class="page_two_up" ><a href="#RESULTS" onclick="doIWC(new IWCParams(\'PAGING\',\'RESULTS\',\'PAGE\',\'\', {\'pageNo\':'+(currentPage+2)+'},\'\',\'${wid}\'))" >'+ ((currentPage+1)*rpp+1)+'-'+((currentPage+1)*rpp + rpp-((noofpgs ==  currentPage+2)?removeFromLastPage:0)) + "</a> </span>";
 	     
 	     
 	     
 	     if(currentPage <= (noofpgs-2)){
-	    	 str+='<span  class="page_last" ><a href="#RESULTS" onclick="doIWC(new IWCParams(\'PAGING\',\'RESULTS\',\'PAGE\',\'\', {\'pageNo\':'+(noofpgs)+'},\'\',\'jQuery{wid}\'))" >'+ " >> </a></span>" 
+	    	 str+='<span  class="page_last" ><a href="#RESULTS" onclick="doIWC(new IWCParams(\'PAGING\',\'RESULTS\',\'PAGE\',\'\', {\'pageNo\':'+(noofpgs)+'},\'\',\'${wid}\'))" >'+ " >> </a></span>" 
 	     }         	
 	       
 	       str+=' ';
@@ -1110,11 +1110,7 @@ function getPaginationString(currentPage,rpp,length,id,removeFromLastPage){
 	return str;
 	}
 var framefenster = [];
-jQuery(document).ready(function(){
-  
-	
- 
-});
+
 var inc = 0;
 initProcessing = false;	//global variable to stop resizing the iframe (when true)
 var bcv=null;
@@ -1129,12 +1125,12 @@ function autoresize_frames() {
 		  if(framefenster[i].contentWindow.document.body){
 	    	  
 	        
-	         if(jQuery(framefenster[i].contentWindow.document.body).css('min-height')=='100%'){
-	        	 jQuery(framefenster[i].contentWindow.document.body).css('min-height','');
+	         if($(framefenster[i].contentWindow.document.body).css('min-height')=='100%'){
+	        	 $(framefenster[i].contentWindow.document.body).css('min-height','');
 	         }
 	        
 	         if("WEB"==bcv || null==bcv || 'undefined'==bcv){
-	        	 bcv=((typeof jQuery("#bec_container_frame").contents().find("#bookingChannel").val()!='undefined') ? (jQuery("#bec_container_frame").contents().find("#bookingChannel").val()) : (typeof document.getElementById('ResPkgSearchForm').bookingChannel.value!='undefined' ? document.getElementById('ResPkgSearchForm').bookingChannel.value : null));
+	        	 bcv=((typeof $("#bec_container_frame").contents().find("#bookingChannel").val()!='undefined') ? ($("#bec_container_frame").contents().find("#bookingChannel").val()) : (typeof document.getElementById('ResPkgSearchForm').bookingChannel.value!='undefined' ? document.getElementById('ResPkgSearchForm').bookingChannel.value : null));
         	 }
 	         var addon_height = "CC"==bcv ? 20 : 620;
 	         var framefenster_size = framefenster[i].contentWindow.document.body.offsetHeight + addon_height ;
@@ -1143,8 +1139,8 @@ function autoresize_frames() {
 	        if(!window.opera && !(isIE() && "WEB"==bcv) && isIE()) {
 	           framefenster_size =('contentDocument' in framefenster[i]?  framefenster[i].contentDocument :  framefenster[i].contentWindow.document).body.offsetHeight;
 	        }
-	        if(jQuery(framefenster[i].contentWindow.document.body).css('height')!='undefined' && jQuery(framefenster[i].contentWindow.document.body).css('height')!='' ){
-	        	//framefenster_size = jQuery(framefenster[i].contentWindow.document.body).css('height').split('px')[0];
+	        if($(framefenster[i].contentWindow.document.body).css('height')!='undefined' && $(framefenster[i].contentWindow.document.body).css('height')!='' ){
+	        	//framefenster_size = $(framefenster[i].contentWindow.document.body).css('height').split('px')[0];
 	        }
 	        var isSafari = false;
 	        var ua = navigator.userAgent.toLowerCase();
@@ -1195,10 +1191,10 @@ function reAdjustRates(){
 	}
 	
 	
-	var changeCard = jQuery('#credit_card_type').val();
+	var changeCard = $('#credit_card_type').val();
 	var method="POST";
 	var xhr=createXMLHttpRequest();
-	var sendUrl="PaymentPage.do?method=reAdjustRates&paymentType="+jQuery('#payment_method_1').val()+   "&paymentMethod=" + ( jQuery('input[name = "paymode"]:checked').val()!= undefined ? jQuery('input[name = "paymode"]:checked').val() : jQuery('#paymode').val() ) +"&cardType=" +jQuery('#credit_card_type').val()+"&OnlinePaymentMethod=" +jQuery('input[name="onlinepaymode"]:checked').val()+"&transectionId="+getUrlVars()["transectionId"];
+	var sendUrl="PaymentPage.do?method=reAdjustRates&paymentType="+$('#payment_method_1').val()+   "&paymentMethod=" + ( $('input[name = "paymode"]:checked').val()!= undefined ? $('input[name = "paymode"]:checked').val() : $('#paymode').val() ) +"&cardType=" +$('#credit_card_type').val()+"&OnlinePaymentMethod=" +$('input[name="onlinepaymode"]:checked').val()+"&transectionId="+getUrlVars()["transectionId"];
 	xhr.open(method, sendUrl, true);
     xhr.onreadystatechange = function(){
     try{
@@ -1212,26 +1208,26 @@ function reAdjustRates(){
 	    		var myJSONtext = xhr.responseText;		    	
 		    	
 		    	var myObject = eval('(' + myJSONtext + ')');
-		    	try{jQuery("#paymentdetails_subtotal").html((thousandGrouping=="Y")?setGrouping(myObject.TOTAL_B4_TAX_PG):myObject.TOTAL_B4_TAX_PG);}catch(e){};
+		    	try{$("#paymentdetails_subtotal").html((thousandGrouping=="Y")?setGrouping(myObject.TOTAL_B4_TAX_PG):myObject.TOTAL_B4_TAX_PG);}catch(e){};
 		    	
 		    	try{	
-		    		jQuery("#totchargeamt").html((thousandGrouping=="Y")?setGrouping(myObject.BOOKING_VALUE):myObject.BOOKING_VALUE);
-		    		jQuery("#totchargeamt-basket").html((thousandGrouping=="Y")?setGrouping(myObject.PAYABLE_VALUE):myObject.PAYABLE_VALUE);	
-		    		jQuery("#tottaxamountdivid").html((thousandGrouping=="Y")?setGrouping(myObject.TOTAL_TAX_VALUE):myObject.TOTAL_TAX_VALUE);
-		    		jQuery("#totaltaxpgcurrid").html((thousandGrouping=="Y")?setGrouping(myObject.TOTAL_TAX_VALUE_PG):myObject.TOTAL_TAX_VALUE_PG);
-		    		jQuery("#totalchargeamtpgcurrid").html((thousandGrouping=="Y")?setGrouping(myObject.PAYABLE_VALUE_PG):myObject.PAYABLE_VALUE_PG);
-		    		jQuery("#totchgpgamt_cc").html((thousandGrouping=="Y")?setGrouping(myObject.TOTAL_PAY_NOW_PG):myObject.TOTAL_PAY_NOW_PG);	 
-		    		jQuery("#totchgpgamt_fc").html((thousandGrouping=="Y")?setGrouping(myObject.TOTAL_PAY_NOW_PG):myObject.TOTAL_PAY_NOW_PG);	  
-		    		jQuery("#totalpaynowamountpgcurrid").html((thousandGrouping=="Y")?setGrouping(myObject.TOTAL_PAY_NOW_PG):myObject.TOTAL_PAY_NOW_PG);	    		
-		    		jQuery("#totalamountprocessnow").html((thousandGrouping=="Y")?setGrouping(myObject.TOTAL_PAY_NOW):myObject.TOTAL_PAY_NOW);			    		
-		    		jQuery("#crdAmountDisplayOff").val(myObject.TOTAL_PAY_NOW);
-		    		jQuery("#totpayNowamt").html((thousandGrouping=="Y")?setGrouping(myObject.PAYABLE_VALUE_PG):myObject.PAYABLE_VALUE_PG);    					    		
-		    		jQuery("#subtotal").html((thousandGrouping=="Y")?setGrouping(myObject.TOTAL_B4_TAX):myObject.TOTAL_B4_TAX);		    		
-		    		jQuery("#totalamountbyairlinepgcurrid").html((thousandGrouping=="Y")?setGrouping(myObject.PAYABLE_VALUE_AIRLINE_PG):myObject.PAYABLE_VALUE_AIRLINE_PG);
-		    		jQuery("#totalamountchargebyairline").html((thousandGrouping=="Y")?setGrouping(myObject.PAYABLE_VALUE_AIRLINE):myObject.PAYABLE_VALUE_AIRLINE); 	
+		    		$("#totchargeamt").html((thousandGrouping=="Y")?setGrouping(myObject.BOOKING_VALUE):myObject.BOOKING_VALUE);
+		    		$("#totchargeamt-basket").html((thousandGrouping=="Y")?setGrouping(myObject.PAYABLE_VALUE):myObject.PAYABLE_VALUE);	
+		    		$("#tottaxamountdivid").html((thousandGrouping=="Y")?setGrouping(myObject.TOTAL_TAX_VALUE):myObject.TOTAL_TAX_VALUE);
+		    		$("#totaltaxpgcurrid").html((thousandGrouping=="Y")?setGrouping(myObject.TOTAL_TAX_VALUE_PG):myObject.TOTAL_TAX_VALUE_PG);
+		    		$("#totalchargeamtpgcurrid").html((thousandGrouping=="Y")?setGrouping(myObject.PAYABLE_VALUE_PG):myObject.PAYABLE_VALUE_PG);
+		    		$("#totchgpgamt_cc").html((thousandGrouping=="Y")?setGrouping(myObject.TOTAL_PAY_NOW_PG):myObject.TOTAL_PAY_NOW_PG);	 
+		    		$("#totchgpgamt_fc").html((thousandGrouping=="Y")?setGrouping(myObject.TOTAL_PAY_NOW_PG):myObject.TOTAL_PAY_NOW_PG);	  
+		    		$("#totalpaynowamountpgcurrid").html((thousandGrouping=="Y")?setGrouping(myObject.TOTAL_PAY_NOW_PG):myObject.TOTAL_PAY_NOW_PG);	    		
+		    		$("#totalamountprocessnow").html((thousandGrouping=="Y")?setGrouping(myObject.TOTAL_PAY_NOW):myObject.TOTAL_PAY_NOW);			    		
+		    		$("#crdAmountDisplayOff").val(myObject.TOTAL_PAY_NOW);
+		    		$("#totpayNowamt").html((thousandGrouping=="Y")?setGrouping(myObject.PAYABLE_VALUE_PG):myObject.PAYABLE_VALUE_PG);    					    		
+		    		$("#subtotal").html((thousandGrouping=="Y")?setGrouping(myObject.TOTAL_B4_TAX):myObject.TOTAL_B4_TAX);		    		
+		    		$("#totalamountbyairlinepgcurrid").html((thousandGrouping=="Y")?setGrouping(myObject.PAYABLE_VALUE_AIRLINE_PG):myObject.PAYABLE_VALUE_AIRLINE_PG);
+		    		$("#totalamountchargebyairline").html((thousandGrouping=="Y")?setGrouping(myObject.PAYABLE_VALUE_AIRLINE):myObject.PAYABLE_VALUE_AIRLINE); 	
 		    	}catch(e){}		    	
 		    	try{
-		    		jQuery("#crdAmountDisplayOff_sell").val(0);
+		    		$("#crdAmountDisplayOff_sell").val(0);
 		    	}catch(e){
 		    		
 		    	}
@@ -1253,14 +1249,14 @@ function reAdjustRates(){
 		    	try{document.getElementById("payNwpaymentsection").innerHTML=myObject.TOTAL_PAY_NOW;}catch(e){}
 		    	try{document.getElementById("totalbalance_addnewservice").innerHTML=myObject.TOTAL_PAY_NOW;}catch(e){}
 		    	try{
-		    		if (jQuery("#idtotalpkgcost")){
-		    			var totalpkgcost = jQuery("#hidTotalWithOtherCharges").val();
-		    			var totaltacandotrchrg = jQuery("#hidOtherCharges").val();
+		    		if ($("#idtotalpkgcost")){
+		    			var totalpkgcost = $("#hidTotalWithOtherCharges").val();
+		    			var totaltacandotrchrg = $("#hidOtherCharges").val();
 		    			totalpkgcost = Number(totalpkgcost) - Number(totaltacandotrchrg);
 		    			totalpkgcost = Number(totalpkgcost) + Number(myObject.TOTAL_TAX_VALUE);
-		    			jQuery("#idtotalpkgcost").html((thousandGrouping=="Y")?setGrouping(totalpkgcost):totalpkgcost);
-		    			jQuery("#hidTotalWithOtherCharges").val(totalpkgcost);
-		    			jQuery("#hidOtherCharges").val(myObject.TOTAL_TAX_VALUE);
+		    			$("#idtotalpkgcost").html((thousandGrouping=="Y")?setGrouping(totalpkgcost):totalpkgcost);
+		    			$("#hidTotalWithOtherCharges").val(totalpkgcost);
+		    			$("#hidOtherCharges").val(myObject.TOTAL_TAX_VALUE);
 		    		}
 		    	}catch(e){
 		    		
@@ -1276,11 +1272,11 @@ function reAdjustRates(){
 		    	
 		    	try {
 		    		if(myObject.PROMOTION_ID != null){
-		    			jQuery("#ccofferbanner").html(myObject.PROMOTION_TEXT);
-		    			jQuery("#cardPromotionId").val(myObject.PROMOTION_ID);
-		    			jQuery("#validationLength").val(myObject.VALIDATION_LENGTH);
+		    			$("#ccofferbanner").html(myObject.PROMOTION_TEXT);
+		    			$("#cardPromotionId").val(myObject.PROMOTION_ID);
+		    			$("#validationLength").val(myObject.VALIDATION_LENGTH);
 		    		}else{
-		    			jQuery('.cc-offer-banner').remove();
+		    			$('.cc-offer-banner').remove();
 		    		}
 		    		
 				} catch (e) {}
@@ -1299,7 +1295,7 @@ function  callAjaxForRateAjustment(){
 }
 function hideAddContinueBar(){
 	try{
-		jQuery('.popup-container-upselling').hide();
+		$('.popup-container-upselling').hide();
 	}catch(e){}
 }
 /* Function to check whether the browser is Internet Explorer*/
