@@ -33,15 +33,14 @@ function pickpack_frontend_form(){
  
 ?>
   <div class="reservations-plugin-container">
-    <form name="form1" method="post" action="" id="form1">
+    <form name="form1" method="post" action="" id="form1" style="width: 100%;">
       <input type="hidden" name="pkgType" value="H" />
-      <div id="bec_wrapper_div" style="display:nones;" class="bec-main-wrapper">
         <!-- <div id="tabs"> -->
-      <a href="#" class="mobile-menu">Plan Trip Type <i class="fa fa-bars fa-2"></i> </a>
+      <a href="#" class="mobile-menu" style="display: none;">Plan Trip Type <i class="fa fa-bars fa-2"></i> </a>
 
       <div class="main_holder" id="hotelDisplay" style="display:block; ">
       <div class="bec_container_div cf" >
-      <ul class="row10">
+      <ul class="outer-container-ul">
         <div class="first-row-container">
             <div class="residence-country-block">
               <div class="option-main-label-2 option-main-label row3" id="h_search_type_lbl_div">
@@ -337,58 +336,62 @@ function pickpack_frontend_form(){
                 <input type="hidden" name="hid_H_Loc" id="hid_H_Loc" value="" validate="" require="Please Enter  Location"/>
               </div>
             </div>
+
+            <div class="hotel-date-time-container">
+              <ul class="hotel-date-time-block">
+                <li class="option-main-label option-main-label-2 row3">
+                  <h1>When Are You Going ?</h1>
+                </li>
+                <li class="width-fix-hotels">
+                  <ul class="hotel-date-times">
+                    <li>
+                      <div>
+                        <label class="option-sub-label">Check -In</label>
+                      </div>
+                      <div>
+                        <input class="user-date-select" type="text" id="ho_departure_temp" name="departure_temp" readonly validate="formH" require="Please Select Depart Date"/>
+                        <input class="user-date-select" type="hidden" id="ho_departure" name="departure" readonly validate="formH" require="Please Select Depart Date"/>
+                      </div>
+                    </li>
+                    <li class="width-night-width-fix">
+                      <div>
+                        <label class="option-sub-label">Night(s)</label>
+                      </div>
+                      <div>
+                        <select name="H_nights" id="H_nights" class="hotel-day-select">
+                          <option value="0">0</option>
+                        </select>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <label class="option-sub-label">Check Out</label>
+                      </div>
+                      <div>
+                      <input class="user-date-select" type="text" name="arrival_temp" id="ho_arrival_temp" readonly validate="formH" require="Please Select Arrival Date"/>
+                        <input class="user-date-select" type="hidden" name="arrival" id="ho_arrival" readonly validate="formH" require="Please Select Arrival Date"/>
+                      </div>
+                    </li>
+                    <li id="room_display_unit" class="width-night-width-fix" style='display:none'>
+                      <div>
+                        <label class="option-sub-label">Rooms</label>
+                      </div>
+                      <div>
+                        <select id="norooms_H" name="norooms_H" class="hotel-day-select" onChange="roomocc(this.id,this.value);resizeContainer();">
+                          <option value="1" selected="selected">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                        </select>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
         </div>
 
-        <ul class="hotel-date-time-block">
-          <li class="option-main-label option-main-label-2 row3">
-            <h1>When Are You Going ?</h1>
-          </li>
-          <li class="width-fix-hotels">
-            <ul class="hotel-date-times">
-              <li>
-                <div>
-                  <label class="option-sub-label">Check -In</label>
-                </div>
-                <div>
-                  <input class="user-date-select" type="text" id="ho_departure_temp" name="departure_temp" readonly validate="formH" require="Please Select Depart Date"/>
-                  <input class="user-date-select" type="hidden" id="ho_departure" name="departure" readonly validate="formH" require="Please Select Depart Date"/>
-                </div>
-              </li>
-              <li class="width-night-width-fix">
-                <div>
-                  <label class="option-sub-label">Night(s)</label>
-                </div>
-                <div>
-                  <select name="H_nights" id="H_nights" class="hotel-day-select">
-                    <option value="0">0</option>
-                  </select>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <label class="option-sub-label">Check Out</label>
-                </div>
-                <div>
-                <input class="user-date-select" type="text" name="arrival_temp" id="ho_arrival_temp" readonly validate="formH" require="Please Select Arrival Date"/>
-                  <input class="user-date-select" type="hidden" name="arrival" id="ho_arrival" readonly validate="formH" require="Please Select Arrival Date"/>
-                </div>
-              </li>
-              <li id="room_display_unit" class="width-night-width-fix" style='display:none'>
-                <div>
-                  <label class="option-sub-label">Rooms</label>
-                </div>
-                <div>
-                  <select id="norooms_H" name="norooms_H" class="hotel-day-select" onChange="roomocc(this.id,this.value);resizeContainer();">
-                    <option value="1" selected="selected">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                  </select>
-                </div>
-              </li>
-            </ul>
-          </li>
-        </ul>
+        
         <li>
           <div class="polka-dots"></div>
           <div class="option-main-label">
