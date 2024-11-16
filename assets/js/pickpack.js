@@ -1263,23 +1263,65 @@ jQuery(document).ready(function ($) {
       }
    };
 
+   // var departure = $("#ho_departure_temp");
+   // let initDep = $("#ho_departure_temp").datepicker({
+   //    dateFormat: dateFormatKey,
+   //    defaultDate: +2,
+   //    onSelect: DatePicked,
+   //    onSelect: function(dateText, inst) {
+   //       DatePicked(dateText);
+   //       $("#ho_arrival_temp").datepicker("option", "minDate", dateText).prop('disabled', false);
+   //   },
+   //    showAnim: "show",
+   //    buttonText: "Show Calendar",
+   //    minDate: "2d",
+   // });
+
+   // departure.datepicker("setDate", +2);
+   // $("#ho_arrival_temp").prop('disabled', true);
+
+   // let initArr = $("#ho_arrival_temp").datepicker({
+   //    dateFormat: dateFormatKey,
+   //    defaultDate: +3,
+   //    onSelect: DatePicked,
+   //    showAnim: "show",
+   //    buttonText: "Show Calendar",
+   //    minDate: "3d",
+   // });
+
+   var departure = $("#ho_departure_temp");
    let initDep = $("#ho_departure_temp").datepicker({
       dateFormat: dateFormatKey,
       defaultDate: +2,
-      onSelect: DatePicked,
-      showAnim: "slide",
+      onSelect: function(dateText, inst) {
+         DatePicked(dateText);
+         let nextDay = new Date(dateText);
+         nextDay.setDate(nextDay.getDate() + 1);
+
+         $("#ho_arrival_temp")
+               .datepicker("option", "minDate", nextDay)
+               .datepicker("setDate", nextDay)
+               .prop('disabled', false);
+      },
+      showAnim: "show",
       buttonText: "Show Calendar",
       minDate: "2d",
    });
 
+   departure.datepicker("setDate", +2);
+
+   $("#ho_arrival_temp").prop('disabled', true);
    let initArr = $("#ho_arrival_temp").datepicker({
       dateFormat: dateFormatKey,
       defaultDate: +3,
       onSelect: DatePicked,
-      showAnim: "slide",
+      showAnim: "show",
       buttonText: "Show Calendar",
       minDate: "3d",
    });
+
+   $("#ho_arrival_temp").datepicker("setDate", +3);
+
 
    $("#checkInDate").val(initDep.datepicker("getDate"));
    $("#checkOutDate").val(initArr.datepicker("getDate"));
@@ -1419,14 +1461,14 @@ console.log($('input[name="hotelSearchType"]:checked').val())
       for (x = 0; x < val; x++) {
          if (pkgtype == "F" || pkgtype == "V") {
             ages_string +=
-               '<div><select id="' +
+               '<div class="flight-child-age-container"><select id="' +
                pkgtype +
                "_R" +
                roomno +
                "childage_" +
                (x + 1) +
                '" class="flight-passenger-select" onChange="resizeContainer();">\n' +
-               opts(2, 11, 1) +
+               opts(0, 17, 1) +
                "</select></div>";
          } else {
             ages_string +=
@@ -1437,7 +1479,7 @@ console.log($('input[name="hotelSearchType"]:checked').val())
                "childage_" +
                (x + 1) +
                '" class="flight-passenger-select" onChange="resizeContainer();">\n' +
-               opts(1, 11, 1) +
+               opts(0, 17, 1) +
                "</select></div>";
          }
       }
@@ -1531,39 +1573,41 @@ console.log($('input[name="hotelSearchType"]:checked').val())
          } else if (e == "H" || e == "T") {
             //occstring+="<div class=\"clearfix\"><div class=\"fleft rooms paddingt\"></div><div class=\"fleft rooms paddingt black_head\">Adult(s)</div><div class=\"fleft rooms paddingt black_head\">Children</div><div class=\"fleft rooms paddingt\">&nbsp;</div><div class=\"fleft rooms\">Room "+(i+1)+"</div><div class=\"fleft rooms\"><select id=\"R"+(i+1)+"occAdults_"+e+"\" class=\"textfmin\" onChange=\"resizeContainer('"+bec+"');\">\n"+opts(1,4,1)+"</select></div><div class=\"fleft rooms\"><select id=\"R"+(i+1)+"occChildren_"+e+"\" class=\"textfmin\" onChange=\"showages('"+e+"',"+(i+1)+",this.value);resizeContainer('"+bec+"');\">\n"+opts(0,4,0)+"</select></div><div class=\"fleft rooms\">&nbsp;</div></div><div class=\"clearfix\" id=\""+e+"_room_"+(i+1)+"_ages\"></div>";
             occstring +=
-               '<div class="hotel-passenger-block"><ul>' +
-               "<li class=\"hotel-passenger-label-text hotel-room-count\" style='display:none'>Room " +
-               (i + 1) +
-               "</li>" +
-               '<li><div><label class="hotel-passenger-label  label-bg-common">Adult <span class=\'italic\'> (s)</span> </label></div><div><select id="R' +
-               (i + 1) +
-               "occAdults_" +
-               e +
-               '" class="hotel-passenger-select" onChange="resizeContainer(' +
-               bec +
-               ');">\n' +
-               opts(1, 9, 1) +
-               "</select></div></li>" +
-               '<li><div><label class="hotel-passenger-label label-bg-common">Children <span class=\'italic\'> </span></label></div><div><select id="R' +
-               (i + 1) +
-               "occChildren_" +
-               e +
-               '" class="hotel-passenger-select" onChange="showages(\'' +
-               e +
-               "'," +
-               (i + 1) +
-               ",this.value);resizeContainer(" +
-               bec +
-               ');">\n' +
-               opts(0, 4, 0) +
-               "</select></div></li>" +
-               "</ul>" +
-               '<ul class="hotel-age-field"><li id="' +
-               e +
-               "_room_" +
-               (i + 1) +
-               '_ages"></li>' +
-               "</ul></div>";
+    '<div class="hotel-passenger-block">' +
+    '<ul>' +
+    "<li class=\"hotel-passenger-label-text hotel-room-count\" style='display:block'>Room " +
+    (i + 1) +
+    "</li>" +
+    '<li><div><label class="hotel-passenger-label  label-bg-common">Adult <span class=\'italic\'> (s)</span> </label></div><div class="room-select-div"><select id="R' +
+    (i + 1) +
+    "occAdults_" +
+    e +
+    '" class="hotel-passenger-select" onChange="resizeContainer(' +
+    bec +
+    ');">\n' +
+    opts(1, 9, 1) +
+    "</select></div></li>" +
+    '<li><div><label class="hotel-passenger-label label-bg-common">Children <span class=\'italic\'> </span></label></div><div class="children-select-div"><select id="R' +
+    (i + 1) +
+    "occChildren_" +
+    e +
+    '" class="hotel-passenger-select" onChange="showages(\'' +
+    e +
+    "'," +
+    (i + 1) +
+    ",this.value);resizeContainer(" +
+    bec +
+    ');">\n' +
+    opts(0, 4, 0) +
+    "</select></div></li>" +
+    "</ul>" +
+    '<ul class="hotel-age-field"><li id="' +
+    e +
+    "_room_" +
+    (i + 1) +
+    '_ages"></li>' +
+    "</ul></div>";
+
          }
       }
       // for activity, adult count drop down id should be "R1occAdults_A". So can't use the value (i + 1) from the above loop as i will be greater than 0
@@ -1861,4 +1905,81 @@ console.log($('input[name="hotelSearchType"]:checked').val())
       }
       setTimeout("resizeContainer()", 300);
    });
+
+   // custom code for changing the theme when selecting hotels and vacations
+   function displayRooms() {
+      var $startdate = $('.start-date-input-container');
+      var $enddate = $('.end-date-input-container');
+      var $input = $('.locationinput');
+      var $select = $('.hotel-day-select');
+      var $passengerSelect = $('.hotel-passenger-select');
+      var $ratingsselect = $('.user-options-select');
+      var $submitbtn = $('.submit-button-pkpk');
+      var $calendarsvg = $('.calendarsvg');
+    
+      // Check which radio button is selected
+      if ($('#hotelSearchRadioBox').is(':checked')) {
+        $startdate.addClass('hotel-green-theme');
+        $enddate.addClass('hotel-green-theme');
+        $input.addClass('hotel-green-theme');
+        $select.addClass('hotel-green-theme');
+        $passengerSelect.addClass('hotel-green-theme');
+        $ratingsselect.addClass('hotel-green-theme');
+        $submitbtn.addClass('hotel-green-submit-btn');
+        $calendarsvg.addClass('hotel-green-themesvg');
+
+
+        $startdate.removeClass('vacation-pink-theme');
+        $enddate.removeClass('vacation-pink-theme');
+        $input.removeClass('vacation-pink-theme');
+        $select.removeClass('vacation-pink-theme');
+        $passengerSelect.removeClass('vacation-pink-theme');
+        $ratingsselect.removeClass('vacation-pink-theme');
+        $submitbtn.removeClass('vacation-pink-submit-btn');
+        $calendarsvg.removeClass('vacation-pink-themesvg');
+
+      } else if ($('#vacationSearchRadioBox').is(':checked')) {
+        $startdate.removeClass('hotel-green-theme');
+        $enddate.removeClass('hotel-green-theme');
+        $input.removeClass('hotel-green-theme');
+        $select.removeClass('hotel-green-theme');
+        $passengerSelect.removeClass('hotel-green-theme');
+        $ratingsselect.removeClass('hotel-green-theme');
+        $submitbtn.removeClass('hotel-green-submit-btn');
+        $calendarsvg.removeClass('hotel-green-themesvg');
+
+
+        $startdate.addClass('vacation-pink-theme');
+        $enddate.addClass('vacation-pink-theme');
+        $input.addClass('vacation-pink-theme');
+        $select.addClass('vacation-pink-theme');
+        $passengerSelect.addClass('vacation-pink-theme');
+        $ratingsselect.addClass('vacation-pink-theme');
+        $submitbtn.addClass('vacation-pink-submit-btn');
+        $calendarsvg.addClass('vacation-pink-themesvg');
+      }
+    }
+    
+    // Attach the function to the radio buttons' change event
+    $('input[name="hotelSearchType"]').on('change', displayRooms);
+    
+    
+
+    toggleStarRatingDiv();
+
+    // Listen for changes on the radio buttons
+    $('#vacationSearchRadioBox, #hotelSearchRadioBox').change(function() {
+        toggleStarRatingDiv();
+    });
+
+    // Function to toggle the star rating div
+    function toggleStarRatingDiv() {
+        if ($('#vacationSearchRadioBox').is(':checked')) {
+            $('#star_rating_div_H').hide();  // Hide the div if vacation radio button is checked
+        } else if ($('#hotelSearchRadioBox').is(':checked')) {
+            $('#star_rating_div_H').show();  // Show the div if hotel radio button is checked
+        } else {
+            $('#star_rating_div_H').show();  // Default case to show the div when neither is checked
+        }
+    }
 });
